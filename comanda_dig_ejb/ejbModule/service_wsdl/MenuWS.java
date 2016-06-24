@@ -1,16 +1,7 @@
 package service_wsdl;
 
-import java.util.List;
 
-import javax.jws.WebMethod;
-import javax.jws.WebService;
-import javax.jws.soap.SOAPBinding;
-import javax.jws.soap.SOAPBinding.Style;
-
-import model.CategoriaMenu;
-import model.ItemMenu;
-
-
+/*
 
 @WebService(targetNamespace="http://comandaDig/wsdl")
 @SOAPBinding(style=Style.RPC)
@@ -39,6 +30,8 @@ public interface MenuWS {
 	@WebMethod
 	public abstract List<ItemMenu> findAllItem();
 	
+	*/
 	
+public interface MenuWS{}
 	
-}
+

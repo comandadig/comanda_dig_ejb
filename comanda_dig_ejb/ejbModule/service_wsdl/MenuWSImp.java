@@ -10,6 +10,7 @@ import model.CategoriaMenu;
 import model.ItemMenu;
 import ejb.CategoriaItensMenuFacade;
 
+/*
 @Stateless
 @WebService(portName= "MenuPort",
 			serviceName ="MenuService",
@@ -71,11 +72,11 @@ public class MenuWSImp implements MenuWS {
 		return this.categoriaItensMenuFacade.findAllItem();
 	}
 
-	
-	
+	*/
+	public class MenuWSImp implements MenuWS{}
 	
 
 	
 	
 	
-}
+//}
