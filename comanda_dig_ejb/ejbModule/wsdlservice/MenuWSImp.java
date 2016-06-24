@@ -1,14 +1,5 @@
-package service_wsdl;
+package wsdlservice;
 
-import java.util.List;
-
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
-import javax.jws.WebService;
-
-import model.CategoriaMenu;
-import model.ItemMenu;
-import ejb.CategoriaItensMenuFacade;
 
 /*
 @Stateless

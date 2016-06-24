@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 /**
@@ -24,6 +25,7 @@ import javax.persistence.Transient;
 {@NamedQuery(name="User.findAll",   query="SELECT u FROM User u"),
 @NamedQuery(name="User.findByLogin", query="SELECT u from User u where u.login = :login"),
 @NamedQuery(name="User.findByEmail", query="SELECT u from User u where u.email = :email")})
+@XmlRootElement
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final String FIND_BY_LOGIN = "User.findByLogin";

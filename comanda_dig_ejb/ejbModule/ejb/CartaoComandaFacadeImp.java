@@ -4,17 +4,9 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 
 import model.CartaoComanda;
-import model.Endereco;
-import model.SalarioUser;
-import model.User;
 import dao.CartaoComandaDAO;
-import dao.EnderecoDAO;
-import dao.SalarioUserDAO;
-import dao.UserDAO;
 
 
 

@@ -1,4 +1,4 @@
-package service_wsdl;
+package wsdlservice;
 
 
 /*
