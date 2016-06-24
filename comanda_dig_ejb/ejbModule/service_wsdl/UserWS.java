@@ -1,4 +1,4 @@
-package service;
+package service_wsdl;
 
 import java.util.List;
 
