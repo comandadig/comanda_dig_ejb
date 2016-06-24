@@ -14,6 +14,8 @@ import model.ItemMenu;
 
 @WebService(targetNamespace="http://comandaDig/wsdl")
 @SOAPBinding(style=Style.RPC)
+
+
 public interface MenuWS {
 	
 	@WebMethod
