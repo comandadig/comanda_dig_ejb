@@ -13,6 +13,7 @@ public class RestApplication extends Application {
 
     public RestApplication () {
         resources.add(UserWS.class);
+        resources.add(MenuWS.class);
     }
 
     @Override
