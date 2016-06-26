@@ -146,10 +146,10 @@ public class UserFacadeImp implements UserFacade {
 	}
 
 	@Override
-	public Boolean autenticarUser(String email, String senha) {
+	public Boolean autenticarUser(String login, String senha) {
 		
 		
-		List<User> users = this.dao.listarPoreEmail(email);
+		List<User> users = this.dao.listarPorLogin(login);
 		if(users !=null && !users.isEmpty()){
 			User user = users.get(0);
 			if(user.getSenha().equals(senha)){

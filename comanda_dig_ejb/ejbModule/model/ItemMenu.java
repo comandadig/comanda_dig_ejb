@@ -15,8 +15,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 
@@ -29,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
 @NamedQuery(name="ItemMenu.findAll", query="SELECT i FROM ItemMenu i")
 })
-
+@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ItemMenu implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -48,6 +50,7 @@ public class ItemMenu implements Serializable {
 	private String filaPreparo;
 
 	@Lob
+	@Transient
 	private byte[] foto;
 
 	private String nome;
@@ -57,6 +60,7 @@ public class ItemMenu implements Serializable {
 	private String situacao;
 
 	private Double valor;
+	
 	
 	@XmlTransient
 	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
