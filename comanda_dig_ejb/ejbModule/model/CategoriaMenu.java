@@ -52,7 +52,7 @@ public class CategoriaMenu implements Serializable {
 	private String nome;
 	
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER)
     @JoinColumn(name="id_categoria_menu")
 	private List<ItemMenu> itemMenuList;
 
