@@ -68,6 +68,7 @@ public class UserFacadeImp implements UserFacade {
 		userPersist.setNome(user.getNome());
 		userPersist.setSenha(user.getSenha());
 		userPersist.setTelefone(user.getTelefone());
+		userPersist.setDirFoto(user.getDirFoto());
 		this.dao.update(userPersist);
 		
 		if (user.getEndereco().getIdEndereco() == null){

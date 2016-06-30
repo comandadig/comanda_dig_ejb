@@ -3,7 +3,6 @@ package model;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -43,7 +42,8 @@ public class CategoriaMenu implements Serializable {
 
 	private String descricao;
 	
-	private String dir_foto;
+	@Column(name="dir_foto")
+	private String dirfoto;
 
 	@Lob
 	@XmlTransient
@@ -111,13 +111,15 @@ public class CategoriaMenu implements Serializable {
 		this.itemMenuList = itemMenuList;
 	}
 
-	public String getDir_foto() {
-		return dir_foto;
+	public String getDirfoto() {
+		return dirfoto;
 	}
 
-	public void setDir_foto(String dir_foto) {
-		this.dir_foto = dir_foto;
+	public void setDirfoto(String dirfoto) {
+		this.dirfoto = dirfoto;
 	}
+
+	
 
 	
 

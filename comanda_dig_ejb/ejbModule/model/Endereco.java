@@ -39,7 +39,7 @@ public class Endereco implements Serializable {
 
 	private String cidade;
 
-	private int nr;
+	private Integer nr;
 
 	private String rua;
 
@@ -102,11 +102,11 @@ public class Endereco implements Serializable {
 		this.cidade = cidade;
 	}
 
-	public int getNr() {
+	public Integer getNr() {
 		return this.nr;
 	}
 
-	public void setNr(int nr) {
+	public void setNr(Integer nr) {
 		this.nr = nr;
 	}
 

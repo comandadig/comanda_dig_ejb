@@ -48,7 +48,8 @@ public class ItemMenu implements Serializable {
 	@Column(name="fila_preparo")
 	private String filaPreparo;
 	
-	private String dir_foto;
+	@Column(name="dir_foto")
+	private String dirFoto;
 
 	@Lob
 	@XmlTransient
@@ -166,15 +167,18 @@ public class ItemMenu implements Serializable {
 
 
 
-	public String getDir_foto() {
-		return dir_foto;
+	public String getDirFoto() {
+		return dirFoto;
 	}
 
 
 
-	public void setDir_foto(String dir_foto) {
-		this.dir_foto = dir_foto;
+	public void setDirFoto(String dirFoto) {
+		this.dirFoto = dirFoto;
 	}
+
+
+
 
 	
 }

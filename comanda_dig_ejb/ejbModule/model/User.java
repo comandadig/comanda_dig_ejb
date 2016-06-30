@@ -53,7 +53,8 @@ public class User implements Serializable {
 
 	private String telefone;
 	
-	private String dir_foto;
+	@Column(name="dir_foto")
+	private String dirFoto;
 
 	
 	//bi-directional many-to-one association to Endereco
@@ -191,14 +192,17 @@ public class User implements Serializable {
 	}
 
 
-	public String getDir_foto() {
-		return dir_foto;
+	public String getDirFoto() {
+		return dirFoto;
 	}
 
 
-	public void setDir_foto(String dir_foto) {
-		this.dir_foto = dir_foto;
+	public void setDirFoto(String dirFoto) {
+		this.dirFoto = dirFoto;
 	}
+
+
+	
 	
 	
 
