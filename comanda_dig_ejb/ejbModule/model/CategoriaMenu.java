@@ -15,10 +15,10 @@ import javax.persistence.Lob;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 
 /**
@@ -42,9 +42,11 @@ public class CategoriaMenu implements Serializable {
 	private double descontoCat;
 
 	private String descricao;
+	
+	private String dir_foto;
 
 	@Lob
-	@Transient
+	@XmlTransient
 	private byte[] foto;
 
 	private String nome;
@@ -107,6 +109,14 @@ public class CategoriaMenu implements Serializable {
 
 	public void setItemMenuList(List<ItemMenu> itemMenuList) {
 		this.itemMenuList = itemMenuList;
+	}
+
+	public String getDir_foto() {
+		return dir_foto;
+	}
+
+	public void setDir_foto(String dir_foto) {
+		this.dir_foto = dir_foto;
 	}
 
 	

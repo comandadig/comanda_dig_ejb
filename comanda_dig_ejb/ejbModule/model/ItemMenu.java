@@ -15,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -48,9 +47,11 @@ public class ItemMenu implements Serializable {
 
 	@Column(name="fila_preparo")
 	private String filaPreparo;
+	
+	private String dir_foto;
 
 	@Lob
-	@Transient
+	@XmlTransient
 	private byte[] foto;
 
 	private String nome;
@@ -63,7 +64,7 @@ public class ItemMenu implements Serializable {
 	
 	
 	@XmlTransient
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER,optional=true)
 	@JoinColumn(name="id_categoria_menu", referencedColumnName="id_categoria_menu")
 	private CategoriaMenu categoriaMenu;
 	
@@ -164,4 +165,16 @@ public class ItemMenu implements Serializable {
 	}
 
 
+
+	public String getDir_foto() {
+		return dir_foto;
+	}
+
+
+
+	public void setDir_foto(String dir_foto) {
+		this.dir_foto = dir_foto;
+	}
+
+	
 }

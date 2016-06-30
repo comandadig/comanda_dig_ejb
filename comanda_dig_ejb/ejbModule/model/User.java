@@ -52,6 +52,8 @@ public class User implements Serializable {
 	private String senha;
 
 	private String telefone;
+	
+	private String dir_foto;
 
 	
 	//bi-directional many-to-one association to Endereco
@@ -187,5 +189,17 @@ public class User implements Serializable {
 	public static String getFindByEmail() {
 		return FIND_BY_EMAIL;
 	}
+
+
+	public String getDir_foto() {
+		return dir_foto;
+	}
+
+
+	public void setDir_foto(String dir_foto) {
+		this.dir_foto = dir_foto;
+	}
+	
+	
 
 }
