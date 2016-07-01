@@ -5,7 +5,6 @@ import java.util.List;
 import javax.ejb.Local;
 
 import model.CartaoComanda;
-import model.User;
 
 
 
