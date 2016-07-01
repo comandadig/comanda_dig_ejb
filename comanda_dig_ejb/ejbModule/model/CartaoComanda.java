@@ -29,27 +29,29 @@ public class CartaoComanda implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_cartao_comanda")
-	private int idCartaoComanda;
+	private Long idCartaoComanda;
 
     
 	@Column(name="cod_comanda")
-	private int codComanda;
+	private String codComanda;
 
 	private String situacao;
 
-	public int getIdCartaoComanda() {
+
+
+	public Long getIdCartaoComanda() {
 		return idCartaoComanda;
 	}
 
-	public void setIdCartaoComanda(int idCartaoComanda) {
+	public void setIdCartaoComanda(Long idCartaoComanda) {
 		this.idCartaoComanda = idCartaoComanda;
 	}
 
-	public int getCodComanda() {
+	public String getCodComanda() {
 		return codComanda;
 	}
 
-	public void setCodComanda(int codComanda) {
+	public void setCodComanda(String codComanda) {
 		this.codComanda = codComanda;
 	}
 
@@ -61,9 +63,12 @@ public class CartaoComanda implements Serializable {
 		this.situacao = situacao;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+	
+
+
+
+
+	
 
 
 }
