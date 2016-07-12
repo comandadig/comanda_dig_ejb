@@ -65,7 +65,7 @@ public class ItemMenu implements Serializable {
 	
 	
 	@XmlTransient
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="id_categoria_menu", referencedColumnName="id_categoria_menu")
 	private CategoriaMenu categoriaMenu;
 	

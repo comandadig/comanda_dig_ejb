@@ -20,8 +20,9 @@ public class Comanda implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_comanda")
-	private int idComanda;
+	private Long idComanda;
 
 	private String situacao;
 
@@ -40,11 +41,11 @@ public class Comanda implements Serializable {
 	public Comanda() {
 	}
 
-	public int getIdComanda() {
+	public Long getIdComanda() {
 		return this.idComanda;
 	}
 
-	public void setIdComanda(int idComanda) {
+	public void setIdComanda(Long idComanda) {
 		this.idComanda = idComanda;
 	}
 

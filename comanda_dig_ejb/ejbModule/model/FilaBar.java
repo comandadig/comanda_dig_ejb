@@ -17,8 +17,9 @@ public class FilaBar implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_fila_bar")
-	private Integer idFilaBar;
+	private Long idFilaBar;
 
 	@ManyToOne
 	@JoinColumn(name="id_caixa")
@@ -32,11 +33,11 @@ public class FilaBar implements Serializable {
 	public FilaBar() {
 	}
 
-	public int getIdFilaBar() {
+	public Long getIdFilaBar() {
 		return this.idFilaBar;
 	}
 
-	public void setIdFilaBar(int idFilaBar) {
+	public void setIdFilaBar(Long idFilaBar) {
 		this.idFilaBar = idFilaBar;
 	}
 

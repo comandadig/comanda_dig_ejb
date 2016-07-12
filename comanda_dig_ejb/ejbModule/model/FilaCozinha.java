@@ -17,8 +17,9 @@ public class FilaCozinha implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_fila_cozinha")
-	private int idFilaCozinha;
+	private Long idFilaCozinha;
 
 	private String situacao;
 	
@@ -33,11 +34,11 @@ public class FilaCozinha implements Serializable {
 	public FilaCozinha() {
 	}
 
-	public int getIdFilaCozinha() {
+	public Long getIdFilaCozinha() {
 		return this.idFilaCozinha;
 	}
 
-	public void setIdFilaCozinha(int idFilaCozinha) {
+	public void setIdFilaCozinha(Long idFilaCozinha) {
 		this.idFilaCozinha = idFilaCozinha;
 	}
 

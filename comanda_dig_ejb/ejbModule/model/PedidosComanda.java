@@ -16,8 +16,9 @@ public class PedidosComanda implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_pedidos_comanda")
-	private int idPedidosComanda;
+	private Long idPedidosComanda;
 
 	private String mesa;
 
@@ -36,11 +37,11 @@ public class PedidosComanda implements Serializable {
 	public PedidosComanda() {
 	}
 
-	public int getIdPedidosComanda() {
+	public Long getIdPedidosComanda() {
 		return this.idPedidosComanda;
 	}
 
-	public void setIdPedidosComanda(int idPedidosComanda) {
+	public void setIdPedidosComanda(Long idPedidosComanda) {
 		this.idPedidosComanda = idPedidosComanda;
 	}
 

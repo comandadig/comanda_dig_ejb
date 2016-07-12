@@ -15,8 +15,9 @@ public class PedidosFilaBar implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_pedidos_fila_bar")
-	private int idPedidosFilaBar;
+	private Long idPedidosFilaBar;
 
 	private String situacao;
 	
@@ -31,11 +32,11 @@ public class PedidosFilaBar implements Serializable {
 	public PedidosFilaBar() {
 	}
 
-	public int getIdPedidosFilaBar() {
+	public Long getIdPedidosFilaBar() {
 		return this.idPedidosFilaBar;
 	}
 
-	public void setIdPedidosFilaBar(int idPedidosFilaBar) {
+	public void setIdPedidosFilaBar(Long idPedidosFilaBar) {
 		this.idPedidosFilaBar = idPedidosFilaBar;
 	}
 

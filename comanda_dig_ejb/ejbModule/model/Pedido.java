@@ -16,8 +16,9 @@ public class Pedido implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_pedido")
-	private int idPedido;
+	private Long idPedido;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="dt_fim_fila")
@@ -54,11 +55,11 @@ public class Pedido implements Serializable {
 	public Pedido() {
 	}
 
-	public int getIdPedido() {
+	public Long getIdPedido() {
 		return this.idPedido;
 	}
 
-	public void setIdPedido(int idPedido) {
+	public void setIdPedido(Long idPedido) {
 		this.idPedido = idPedido;
 	}
 

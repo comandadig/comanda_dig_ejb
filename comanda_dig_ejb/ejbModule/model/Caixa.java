@@ -19,7 +19,8 @@ public class Caixa implements Serializable {
 
 	@Id
 	@Column(name="id_caixa")
-	private int idCaixa;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long idCaixa;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="dt_abertura")
@@ -45,11 +46,11 @@ public class Caixa implements Serializable {
 	public Caixa() {
 	}
 
-	public int getIdCaixa() {
+	public Long getIdCaixa() {
 		return this.idCaixa;
 	}
 
-	public void setIdCaixa(int idCaixa) {
+	public void setIdCaixa(Long idCaixa) {
 		this.idCaixa = idCaixa;
 	}
 
