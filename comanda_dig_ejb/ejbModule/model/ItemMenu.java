@@ -65,10 +65,14 @@ public class ItemMenu implements Serializable {
 	
 	
 	@XmlTransient
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name="id_categoria_menu", referencedColumnName="id_categoria_menu")
 	private CategoriaMenu categoriaMenu;
 	
+	@XmlTransient
+	@ManyToOne
+	@JoinColumn(name="id_pedido")
+	private Pedido pedido;
 
 	public ItemMenu() {
 	}
@@ -175,6 +179,18 @@ public class ItemMenu implements Serializable {
 
 	public void setDirFoto(String dirFoto) {
 		this.dirFoto = dirFoto;
+	}
+
+
+
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
 
 

@@ -9,7 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -52,8 +51,7 @@ public class CategoriaMenu implements Serializable {
 	private String nome;
 	
 	
-	@OneToMany(fetch=FetchType.EAGER)
-    @JoinColumn(name="id_categoria_menu")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy="categoriaMenu")
 	private List<ItemMenu> itemMenuList;
 
 	public CategoriaMenu() {

@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -64,6 +66,9 @@ public class User implements Serializable {
 	@Transient
 	private TipoUser tipoUser;
 
+	@OneToMany(mappedBy="user")
+	private List<Pedido> pedidos;
+	
 	public User() {
 	}
 
@@ -193,6 +198,16 @@ public class User implements Serializable {
 
 	public void setDirFoto(String dirFoto) {
 		this.dirFoto = dirFoto;
+	}
+
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 
 
