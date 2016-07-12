@@ -54,7 +54,6 @@ public class CategoriaMenu implements Serializable {
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="id_categoria_menu")
-	//@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy="categoriaMenu")
 	private List<ItemMenu> itemMenuList;
 
 	public CategoriaMenu() {
