@@ -7,9 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Transient;
@@ -57,17 +55,13 @@ public class User implements Serializable {
 	private String dirFoto;
 
 	
-	//bi-directional many-to-one association to Endereco
 	@Transient
 	private Endereco endereco;
 
-	//bi-directional many-to-one association to SalarioUser
 	@Transient
 	private SalarioUser salarioUser;
 
-	//bi-directional many-to-one association to TipoUser
-	@ManyToOne
-	@JoinColumn(name="id_tipo_user")
+	@Transient
 	private TipoUser tipoUser;
 
 	public User() {

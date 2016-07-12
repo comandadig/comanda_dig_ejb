@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,7 +46,8 @@ public class Endereco implements Serializable {
 
 	private String uf;
 
-	@ManyToOne
+	
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_user")
 	private User user;
 
