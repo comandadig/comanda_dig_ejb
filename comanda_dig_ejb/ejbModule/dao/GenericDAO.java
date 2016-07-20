@@ -85,8 +85,6 @@ public abstract class GenericDAO<T> {
 				return null;
 			}
 			
-			
-			 
 		} catch (Exception e) {
 			System.out.println("Error while running query: " + e.getMessage());
 			e.printStackTrace();
@@ -118,10 +116,10 @@ public abstract class GenericDAO<T> {
 		return result.intValue();
 	}
 	
-	public void executeNativeQuery(String namedQuery, Map<String, Object> parameters) {
+	public void executeNativeQuery(String sql, Map<String, Object> parameters) {
 
 		try {
-			Query query = em.createQuery(namedQuery);
+			Query query = em.createNativeQuery(sql);
 			// Method that will populate parameters if they are passed not null and empty
 			if (parameters != null && !parameters.isEmpty()) {
 				populateQueryParameters(query, parameters);
@@ -137,7 +135,25 @@ public abstract class GenericDAO<T> {
 	}
 	
 	
-	
+	@SuppressWarnings("unchecked")
+	public List<T> executeNamedQuery(String namedQuery,  Map<String, Object> parameters) {
+		List<T> result = null;
+
+		try {
+			Query query = em.createNamedQuery(namedQuery);
+			
+			if (parameters != null && !parameters.isEmpty()) {
+				populateQueryParameters(query, parameters);
+			}
+			result = (List<T>)  query.getResultList();
+			
+			
+		} catch (Exception e) {
+			System.out.println("Error while running query: " + e.getMessage());
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 	
 	

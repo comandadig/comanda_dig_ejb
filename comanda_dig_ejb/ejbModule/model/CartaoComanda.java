@@ -9,6 +9,7 @@ import java.util.List;
  * The persistent class for the cartao_comanda database table.
  * 
  */
+
 @Entity
 @Table(name="cartao_comanda")
 @NamedQuery(name="CartaoComanda.findAll", query="SELECT c FROM CartaoComanda c")

@@ -22,11 +22,11 @@ public class Caixa implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idCaixa;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="dt_abertura")
 	private Date dtAbertura;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="dt_fechamento")
 	private Date dtFechamento;
 
