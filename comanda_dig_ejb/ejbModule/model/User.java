@@ -13,7 +13,10 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 
 /**
@@ -26,6 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQuery(name="User.findByLogin", query="SELECT u from User u where u.login = :login"),
 @NamedQuery(name="User.findByEmail", query="SELECT u from User u where u.email = :email")})
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final String FIND_BY_LOGIN = "User.findByLogin";
@@ -43,6 +47,7 @@ public class User implements Serializable {
 	private String email;
 
 	@Lob
+	@XmlTransient
 	private byte[] foto;
 
 	private String login;
@@ -66,6 +71,8 @@ public class User implements Serializable {
 	@Transient
 	private TipoUser tipoUser;
 
+	@Transient
+	@XmlTransient
 	@OneToMany(mappedBy="user")
 	private List<Pedido> pedidos;
 	

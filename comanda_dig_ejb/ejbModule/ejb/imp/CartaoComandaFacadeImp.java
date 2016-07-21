@@ -1,4 +1,5 @@
-package ejb;
+package ejb.imp;
+
 
 import java.util.List;
 
@@ -7,6 +8,7 @@ import javax.ejb.Stateless;
 
 import model.CartaoComanda;
 import dao.CartaoComandaDAO;
+import ejb.CartaoComandaFacade;
 
 
 

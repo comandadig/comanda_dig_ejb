@@ -1,4 +1,6 @@
-package ejb;
+package ejb.imp;
+
+
 
 import java.util.List;
 
@@ -11,6 +13,7 @@ import model.CategoriaMenu;
 import model.ItemMenu;
 import dao.CategoriaMenuDAO;
 import dao.ItemMenuDAO;
+import ejb.CategoriaItensMenuFacade;
 
 
 

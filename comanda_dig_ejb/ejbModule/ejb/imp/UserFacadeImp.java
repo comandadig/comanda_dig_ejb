@@ -1,4 +1,6 @@
-package ejb;
+package ejb.imp;
+
+
 
 import java.util.List;
 
@@ -13,6 +15,7 @@ import model.User;
 import dao.EnderecoDAO;
 import dao.SalarioUserDAO;
 import dao.UserDAO;
+import ejb.UserFacade;
 
 
 

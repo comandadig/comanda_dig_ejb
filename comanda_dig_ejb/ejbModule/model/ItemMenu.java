@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +15,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -70,9 +72,8 @@ public class ItemMenu implements Serializable {
 	private CategoriaMenu categoriaMenu;
 	
 	@XmlTransient
-	@ManyToOne
-	@JoinColumn(name="id_pedido")
-	private Pedido pedido;
+	@OneToMany(mappedBy="itemMenu")
+	private List<Pedido> pedidos;
 
 	public ItemMenu() {
 	}
@@ -183,15 +184,19 @@ public class ItemMenu implements Serializable {
 
 
 
-	public Pedido getPedido() {
-		return pedido;
+	public List<Pedido> getPedidos() {
+		return pedidos;
 	}
 
 
 
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
+
+
+
+	
 
 
 

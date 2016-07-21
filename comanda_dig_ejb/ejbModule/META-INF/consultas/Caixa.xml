@@ -2,21 +2,21 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd"
   version="2.1">
-  <named-query name="AberturaCaixa.CartoesDisponiveis">
+  <named-query name="Caixa.CartoesDisponiveis">
     <query>
       FROM CartaoComanda c where c.situacao = :situacao
     </query>
   </named-query>
   
   
-  <named-query name="AberturaCaixa.FindComandasBySituacao">
+  <named-query name="Caixa.FindComandasBySituacao">
     <query>
       FROM Comanda c where c.situacao in (:inList) and c.caixa.idCaixa = :idCaixa
     </query>
   </named-query>
   
   
-  <named-query name="AberturaCaixa.FindCaixaBySituacao">
+  <named-query name="Caixa.FindCaixaBySituacao">
     <query>
       FROM Caixa c where c.situacao = :situacao
     </query>

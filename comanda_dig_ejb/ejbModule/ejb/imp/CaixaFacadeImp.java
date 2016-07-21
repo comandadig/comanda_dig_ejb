@@ -1,4 +1,6 @@
-package ejb;
+package ejb.imp;
+
+
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,6 +18,7 @@ import dao.CartaoComandaDAO;
 import dao.ComandaDAO;
 import dao.FilaBarDAO;
 import dao.FilaCozinhaDAO;
+import ejb.CaixaFacade;
 import model.Caixa;
 import model.CartaoComanda;
 import model.Comanda;
@@ -95,7 +98,7 @@ public class CaixaFacadeImp implements CaixaFacade {
 		Map<String, Object> map = new HashMap<String, Object>();
 		String sit = SituacaoCartaoComanda.ATIVO.getValue();
 		map.put("situacao", sit);
-		List<CartaoComanda> cartaoComandas = cartaoComandaDAO.executeNamedQuery("AberturaCaixa.CartoesDisponiveis", map);
+		List<CartaoComanda> cartaoComandas = cartaoComandaDAO.executeNamedQuery("Caixa.CartoesDisponiveis", map);
 		if (cartaoComandas != null && !cartaoComandas.isEmpty()){
 			for (CartaoComanda cartaoComanda : cartaoComandas) {
 				Comanda comanda = new Comanda();
@@ -128,7 +131,7 @@ public class CaixaFacadeImp implements CaixaFacade {
 		
 		parameters.put("inList", inList);
 		parameters.put("idCaixa", caixa.getIdCaixa());
-		List<Comanda> list = comandaDAO.executeNamedQuery("AberturaCaixa.FindComandasBySituacao", parameters);
+		List<Comanda> list = comandaDAO.executeNamedQuery("Caixa.FindComandasBySituacao", parameters);
 		
 		return list;
 		
@@ -137,7 +140,7 @@ public class CaixaFacadeImp implements CaixaFacade {
 	public List<Caixa> findCaixaBySituacao(SituacaoCaixa situacaoCaixa){
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("situacao", situacaoCaixa.getValue());
-		List<Caixa> list = caixaDAO.executeNamedQuery("AberturaCaixa.FindCaixaBySituacao", parameters);
+		List<Caixa> list = caixaDAO.executeNamedQuery("Caixa.FindCaixaBySituacao", parameters);
 		return list;
 		
 	}

@@ -1,9 +1,20 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -20,11 +31,11 @@ public class Pedido implements Serializable {
 	@Column(name="id_pedido")
 	private Long idPedido;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="dt_fim_fila")
 	private Date dtFimFila;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="dt_ini_fila")
 	private Date dtIniFila;
 
@@ -32,9 +43,7 @@ public class Pedido implements Serializable {
 
 	private String situacao;
 
-	//bi-directional many-to-one association to Pedido
-	@OneToMany(mappedBy="pedido")
-	private List<ItemMenu> itemMenu;
+	
 
 	//bi-directional many-to-one association to PedidosComanda
 	@ManyToOne
@@ -45,7 +54,21 @@ public class Pedido implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="id_user")
 	private User user;
+	
+	public ItemMenu getItemMenu() {
+		return itemMenu;
+	}
 
+	public void setItemMenu(ItemMenu itemMenu) {
+		this.itemMenu = itemMenu;
+	}
+
+	//bi-directional many-to-one association to User
+	@ManyToOne
+	@JoinColumn(name="id_item_menu")
+	private ItemMenu itemMenu;
+
+	
 	@OneToMany(mappedBy="pedido")
 	private List<PedidosFilaBar> filaBars;
 	
@@ -99,13 +122,7 @@ public class Pedido implements Serializable {
 
 	
 
-	public List<ItemMenu> getItemMenu() {
-		return itemMenu;
-	}
-
-	public void setItemMenu(List<ItemMenu> itemMenu) {
-		this.itemMenu = itemMenu;
-	}
+	
 
 	public PedidosComanda getPedidosComanda() {
 		return this.pedidosComanda;

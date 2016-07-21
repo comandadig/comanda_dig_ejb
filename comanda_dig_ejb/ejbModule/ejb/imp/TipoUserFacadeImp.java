@@ -1,4 +1,6 @@
-package ejb;
+package ejb.imp;
+
+
 
 import java.util.List;
 
@@ -7,6 +9,7 @@ import javax.ejb.Stateless;
 
 import model.TipoUser;
 import dao.TipoUserDAO;
+import ejb.TipoUserFacade;
 
 
 
