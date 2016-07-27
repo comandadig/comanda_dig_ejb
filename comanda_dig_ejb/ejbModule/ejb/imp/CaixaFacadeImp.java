@@ -88,9 +88,17 @@ public class CaixaFacadeImp implements CaixaFacade {
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Caixa abrirCaixa(){
+	public Caixa abrirCaixa(Caixa caixaDummy){
 		
 		Caixa caixa = new Caixa();
+		caixa.setCadastroCliente(caixaDummy.getCadastroCliente());
+		caixa.setEntrada(caixaDummy.getEntrada());
+		caixa.setValorEntrada(caixaDummy.getValorEntrada());
+		caixa.setConver(caixaDummy.getConver());
+		caixa.setValorConver(caixaDummy.getValorConver());
+		caixa.setEntradaMasFem(caixaDummy.getEntradaMasFem());
+		caixa.setValorEntradaFem(caixaDummy.getValorEntradaFem());
+		caixa.setValorEntradaMas(caixaDummy.getValorEntradaMas());
 		caixa.setDtAbertura(new Date());
 		caixa.setSituacao(SituacaoCaixa.ABERTO.getValue());
 		caixaDAO.save(caixa);

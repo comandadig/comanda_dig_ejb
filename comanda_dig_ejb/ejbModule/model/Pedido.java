@@ -42,6 +42,8 @@ public class Pedido implements Serializable {
 	private String obs;
 
 	private String situacao;
+	
+	private Integer quantItem;
 
 	
 
@@ -154,6 +156,14 @@ public class Pedido implements Serializable {
 
 	public void setFilaCozinhas(List<PedidosFilaCozinha> filaCozinhas) {
 		this.filaCozinhas = filaCozinhas;
+	}
+
+	public Integer getQuantItem() {
+		return quantItem;
+	}
+
+	public void setQuantItem(Integer quantItem) {
+		this.quantItem = quantItem;
 	}
 	
 	

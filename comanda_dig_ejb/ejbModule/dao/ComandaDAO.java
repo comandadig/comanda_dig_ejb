@@ -1,5 +1,9 @@
 package dao;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.ejb.Stateless;
 
 import model.Comanda;
@@ -13,5 +17,14 @@ public class ComandaDAO extends GenericDAO<Comanda> {
 		super(Comanda.class);
 	}
 	
+	
+	
+	public Comanda buscarComanda(String codComanda) {
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("codComanda", codComanda);
+		List<Comanda> list = this.executeNamedQuery("Comanda.ConsultaComanda", parameters);
+		if (list!= null && !list.isEmpty()) return list.get(0);
+		return null;
+	}
 	
 }

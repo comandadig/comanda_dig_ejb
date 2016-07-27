@@ -42,7 +42,17 @@ public class Caixa implements Serializable {
 	@OneToMany(mappedBy="caixa")
 	private List<FilaCozinha> filaCozinhas;
 	
-
+	private Boolean cadastroCliente;
+	private Boolean conver;
+	private Double valorConver;
+	private Boolean entrada;
+	private Double valorEntrada;
+	private Boolean entradaMasFem;
+	private Double valorEntradaFem;
+	private Double valorEntradaMas;
+	
+	
+	
 	public Caixa() {
 	}
 
@@ -100,6 +110,70 @@ public class Caixa implements Serializable {
 
 	public void setFilaCozinhas(List<FilaCozinha> filaCozinhas) {
 		this.filaCozinhas = filaCozinhas;
+	}
+
+	public Boolean getCadastroCliente() {
+		return cadastroCliente;
+	}
+
+	public void setCadastroCliente(Boolean cadastroCliente) {
+		this.cadastroCliente = cadastroCliente;
+	}
+
+	public Boolean getConver() {
+		return conver;
+	}
+
+	public void setConver(Boolean conver) {
+		this.conver = conver;
+	}
+
+	public Double getValorConver() {
+		return valorConver;
+	}
+
+	public void setValorConver(Double valorConver) {
+		this.valorConver = valorConver;
+	}
+
+	public Boolean getEntrada() {
+		return entrada;
+	}
+
+	public void setEntrada(Boolean entrada) {
+		this.entrada = entrada;
+	}
+
+	public Double getValorEntrada() {
+		return valorEntrada;
+	}
+
+	public void setValorEntrada(Double valorEntrada) {
+		this.valorEntrada = valorEntrada;
+	}
+
+	public Boolean getEntradaMasFem() {
+		return entradaMasFem;
+	}
+
+	public void setEntradaMasFem(Boolean entradaMasFem) {
+		this.entradaMasFem = entradaMasFem;
+	}
+
+	public Double getValorEntradaFem() {
+		return valorEntradaFem;
+	}
+
+	public void setValorEntradaFem(Double valorEntradaFem) {
+		this.valorEntradaFem = valorEntradaFem;
+	}
+
+	public Double getValorEntradaMas() {
+		return valorEntradaMas;
+	}
+
+	public void setValorEntradaMas(Double valorEntradaMas) {
+		this.valorEntradaMas = valorEntradaMas;
 	}
 	
 	

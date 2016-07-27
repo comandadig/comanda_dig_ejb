@@ -38,6 +38,12 @@ public class Comanda implements Serializable {
 	@OneToMany(mappedBy="comanda")
 	private List<PedidosComanda> pedidosComandas;
 
+	
+	private String nome;
+	private String telefone;
+	private String documento;
+	private Boolean sexo;
+	
 	public Comanda() {
 	}
 
@@ -71,6 +77,46 @@ public class Comanda implements Serializable {
 
 	public void setCaixa(Caixa caixa) {
 		this.caixa = caixa;
+	}
+
+	public List<PedidosComanda> getPedidosComandas() {
+		return pedidosComandas;
+	}
+
+	public void setPedidosComandas(List<PedidosComanda> pedidosComandas) {
+		this.pedidosComandas = pedidosComandas;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getDocumento() {
+		return documento;
+	}
+
+	public void setDocumento(String documento) {
+		this.documento = documento;
+	}
+
+	public Boolean getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(Boolean sexo) {
+		this.sexo = sexo;
 	}
 
 	

@@ -5,6 +5,7 @@
 		<jta-data-source>java:jboss/mysqlds</jta-data-source>
 		<mapping-file>META-INF/consultas/Caixa.xml</mapping-file>
 		<mapping-file>META-INF/consultas/Pedido.xml</mapping-file>
+		<mapping-file>META-INF/consultas/Comanda.xml</mapping-file>
 		<properties>  
            <property name="hibernate.hbm2ddl.auto" value="create"/>
            <property name="hibernate.hbm2ddl.auto" value="update"/>

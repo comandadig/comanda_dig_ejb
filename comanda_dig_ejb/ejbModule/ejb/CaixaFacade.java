@@ -24,7 +24,7 @@ public interface CaixaFacade {
 	
 	public abstract List<Caixa> findAll();
 	
-	public abstract Caixa abrirCaixa();
+	public abstract Caixa abrirCaixa(Caixa caixa);
 	
 	public abstract List<Caixa> findCaixaBySituacao(SituacaoCaixa situacaoCaixa);
 	

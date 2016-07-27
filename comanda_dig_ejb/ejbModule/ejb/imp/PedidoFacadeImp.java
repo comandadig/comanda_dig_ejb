@@ -2,9 +2,7 @@ package ejb.imp;
 
 
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -71,11 +69,7 @@ public class PedidoFacadeImp implements PedidoFacade {
 
 	@Override
 	public Comanda buscarComanda(String codComanda) {
-		Map<String, Object> parameters = new HashMap<>();
-		parameters.put("codComanda", codComanda);
-		List<Comanda> list = comandaDAO.executeNamedQuery("Pedido.ConsultaComanda", parameters);
-		if (list!= null && !list.isEmpty()) return list.get(0);
-		return null;
+		return comandaDAO.buscarComanda(codComanda);
 	}
 
 
