@@ -1,7 +1,5 @@
 package ejb.imp;
 
-
-
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -9,8 +7,10 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 
+import model.CategoriaMaster;
 import model.CategoriaMenu;
 import model.ItemMenu;
+import dao.CategoriaMasterDAO;
 import dao.CategoriaMenuDAO;
 import dao.ItemMenuDAO;
 import ejb.CategoriaItensMenuFacade;
@@ -27,13 +27,9 @@ import ejb.CategoriaItensMenuFacade;
     private CategoriaMenuDAO categoriaMenuDAO;
     @EJB
     private ItemMenuDAO itemMenuDAO;
+    @EJB
+    private CategoriaMasterDAO categoriaMasterDAO;
    
-   
-    
-    public CategoriaItensMenuFacadeImp() {
-    	
-    }
-
 	@Override
 	public void saveCategoria(CategoriaMenu categoriaMenu) {
 		categoriaMenuDAO.save(categoriaMenu);		
@@ -77,7 +73,6 @@ import ejb.CategoriaItensMenuFacade;
 			CategoriaMenu categoriaMenu = categoriaMenuDAO.find(itemMenu.getCategoriaMenu().getIdCategoriaMenu());
 			categoriaMenuDAO.update(categoriaMenu);
 		}
-		
 		return itemMenu;
 	}
 
@@ -94,6 +89,37 @@ import ejb.CategoriaItensMenuFacade;
 	@Override
 	public List<ItemMenu> findAllItem() {
 		return this.itemMenuDAO.findAll();
+	}
+
+	@Override
+	public void saveCategoriaMaster(CategoriaMaster categoriaMaster) {
+		categoriaMasterDAO.save(categoriaMaster);
+	}
+
+	@Override
+	public CategoriaMaster updateCategoriaMaster(CategoriaMaster categoriaMaster) {
+		CategoriaMaster master = this.categoriaMasterDAO.find(categoriaMaster.getIdCategoriaMaster());
+		master.setDescricao(categoriaMaster.getDescricao());
+		master.setDirfoto(categoriaMaster.getDirfoto());
+		master.setFoto(categoriaMaster.getFoto());
+		master.setNome(categoriaMaster.getNome());
+		master.setCategoriaMenus(categoriaMaster.getCategoriaMenus());
+		return categoriaMasterDAO.update(master);
+	}
+
+	@Override
+	public void deleteCategoriaMaster(CategoriaMaster categoriaMaster) {
+		categoriaMasterDAO.delete(categoriaMaster);
+	}
+
+	@Override
+	public CategoriaMaster findCategoriaMaster(Long id) {
+		return categoriaMasterDAO.find(id);
+	}
+
+	@Override
+	public List<CategoriaMaster> findAllCategoriaMaster() {
+		return categoriaMasterDAO.findAll();
 	}
 
 	

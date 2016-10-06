@@ -12,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -27,20 +26,18 @@ import javax.xml.bind.annotation.XmlTransient;
  * 
  */
 @Entity
-@Table(name="categoria_menu")
-@NamedQuery(name="CategoriaMenu.findAll", query="SELECT c FROM CategoriaMenu c")
+@Table(name="categoria_master")
+@NamedQuery(name="CategoriaMaster.findAll", query="SELECT c FROM CategoriaMaster c")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
-public class CategoriaMenu implements Serializable {
+public class CategoriaMaster implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="id_categoria_menu")
+	@Column(name="id_categoria_master")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long idCategoriaMenu;
+	private Long idCategoriaMaster;
 
-	@Column(name="desconto_cat")
-	private double descontoCat;
 
 	private String descricao;
 	
@@ -54,32 +51,25 @@ public class CategoriaMenu implements Serializable {
 	private String nome;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="id_categoria_menu")
-	private List<ItemMenu> itemMenuList;
+	@JoinColumn(name="id_categoria_master",nullable = true)
+	private List<CategoriaMenu> categoriaMenus;
 
-	@XmlTransient
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="id_categoria_master", referencedColumnName="id_categoria_master",nullable = true)
-	private CategoriaMaster categoriaMaster;
+	public CategoriaMaster() {
+	}
+
 	
-	public CategoriaMenu() {
+
+	public Long getIdCategoriaMaster() {
+		return idCategoriaMaster;
 	}
 
-	public Long getIdCategoriaMenu() {
-		return this.idCategoriaMenu;
+
+
+	public void setIdCategoriaMaster(Long idCategoriaMaster) {
+		this.idCategoriaMaster = idCategoriaMaster;
 	}
 
-	public void setIdCategoriaMenu(Long idCategoriaMenu) {
-		this.idCategoriaMenu = idCategoriaMenu;
-	}
 
-	public double getDescontoCat() {
-		return this.descontoCat;
-	}
-
-	public void setDescontoCat(double descontoCat) {
-		this.descontoCat = descontoCat;
-	}
 
 	public String getDescricao() {
 		return this.descricao;
@@ -109,13 +99,17 @@ public class CategoriaMenu implements Serializable {
 
 	
 
-	public List<ItemMenu> getItemMenuList() {
-		return itemMenuList;
+	public List<CategoriaMenu> getCategoriaMenus() {
+		return categoriaMenus;
 	}
 
-	public void setItemMenuList(List<ItemMenu> itemMenuList) {
-		this.itemMenuList = itemMenuList;
+
+
+	public void setCategoriaMenus(List<CategoriaMenu> categoriaMenus) {
+		this.categoriaMenus = categoriaMenus;
 	}
+
+
 
 	public String getDirfoto() {
 		return dirfoto;
@@ -123,14 +117,6 @@ public class CategoriaMenu implements Serializable {
 
 	public void setDirfoto(String dirfoto) {
 		this.dirfoto = dirfoto;
-	}
-
-	public CategoriaMaster getCategoriaMaster() {
-		return categoriaMaster;
-	}
-
-	public void setCategoriaMaster(CategoriaMaster categoriaMaster) {
-		this.categoriaMaster = categoriaMaster;
 	}
 
 	
