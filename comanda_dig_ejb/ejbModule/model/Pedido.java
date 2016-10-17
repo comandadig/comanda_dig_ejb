@@ -57,18 +57,18 @@ public class Pedido implements Serializable {
 	@JoinColumn(name="id_user")
 	private User user;
 	
-	public ItemMenu getItemMenu() {
-		return itemMenu;
+	public Produto getItemMenu() {
+		return produto;
 	}
 
-	public void setItemMenu(ItemMenu itemMenu) {
-		this.itemMenu = itemMenu;
+	public void setItemMenu(Produto produto) {
+		this.produto = produto;
 	}
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
 	@JoinColumn(name="id_item_menu")
-	private ItemMenu itemMenu;
+	private Produto produto;
 
 	
 	@OneToMany(mappedBy="pedido")

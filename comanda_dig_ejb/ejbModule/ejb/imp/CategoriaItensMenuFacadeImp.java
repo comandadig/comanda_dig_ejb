@@ -9,7 +9,7 @@ import javax.ejb.TransactionAttributeType;
 
 import model.CategoriaMaster;
 import model.CategoriaMenu;
-import model.ItemMenu;
+import model.Produto;
 import dao.CategoriaMasterDAO;
 import dao.CategoriaMenuDAO;
 import dao.ItemMenuDAO;
@@ -59,7 +59,7 @@ import ejb.CategoriaItensMenuFacade;
 
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void saveItem(ItemMenu itemMenu) {
+	public void saveItem(Produto itemMenu) {
 		CategoriaMenu categoriaMenu = categoriaMenuDAO.find(itemMenu.getCategoriaMenu().getIdCategoriaMenu());
 		itemMenu.setCategoriaMenu(categoriaMenu);
 		this.itemMenuDAO.save(itemMenu);
@@ -67,7 +67,7 @@ import ejb.CategoriaItensMenuFacade;
 
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public ItemMenu updateItem(ItemMenu itemMenu) {
+	public Produto updateItem(Produto itemMenu) {
 		itemMenuDAO.update(itemMenu);
 		if (itemMenu.getCategoriaMenu() != null){
 			CategoriaMenu categoriaMenu = categoriaMenuDAO.find(itemMenu.getCategoriaMenu().getIdCategoriaMenu());
@@ -77,17 +77,17 @@ import ejb.CategoriaItensMenuFacade;
 	}
 
 	@Override
-	public void deleteItem(ItemMenu itemMenu) {
+	public void deleteItem(Produto itemMenu) {
 		this.itemMenuDAO.delete(itemMenu);
 	}
 
 	@Override
-	public ItemMenu findItem(Long id) {
+	public Produto findItem(Long id) {
 		return this.itemMenuDAO.find(id);
 	}
 
 	@Override
-	public List<ItemMenu> findAllItem() {
+	public List<Produto> findAllItem() {
 		return this.itemMenuDAO.findAll();
 	}
 

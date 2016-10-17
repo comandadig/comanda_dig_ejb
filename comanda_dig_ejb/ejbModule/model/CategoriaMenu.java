@@ -55,7 +55,7 @@ public class CategoriaMenu implements Serializable {
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="id_categoria_menu")
-	private List<ItemMenu> itemMenuList;
+	private List<Produto> itemMenuList;
 
 	@XmlTransient
 	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
@@ -109,11 +109,11 @@ public class CategoriaMenu implements Serializable {
 
 	
 
-	public List<ItemMenu> getItemMenuList() {
+	public List<Produto> getItemMenuList() {
 		return itemMenuList;
 	}
 
-	public void setItemMenuList(List<ItemMenu> itemMenuList) {
+	public void setItemMenuList(List<Produto> itemMenuList) {
 		this.itemMenuList = itemMenuList;
 	}
 

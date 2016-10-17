@@ -39,27 +39,27 @@ public class MenuWSImp implements MenuWS {
 	}
 
 	@Override
-	public void saveItem(ItemMenu itemMenu) {
+	public void saveItem(Produto itemMenu) {
 		this.categoriaItensMenuFacade.saveItem(itemMenu);
 	}
 
 	@Override
-	public ItemMenu updateItem(ItemMenu itemMenu) {
+	public Produto updateItem(Produto itemMenu) {
 		return this.categoriaItensMenuFacade.updateItem(itemMenu);
 	}
 
 	@Override
-	public void deleteItem(ItemMenu itemMenu) {
+	public void deleteItem(Produto itemMenu) {
 		this.categoriaItensMenuFacade.deleteItem(itemMenu);
 	}
 
 	@Override
-	public ItemMenu findItem(Long id) {
+	public Produto findItem(Long id) {
 		return this.categoriaItensMenuFacade.findItem(id);
 	}
 
 	@Override
-	public List<ItemMenu> findAllItem() {
+	public List<Produto> findAllItem() {
 		return this.categoriaItensMenuFacade.findAllItem();
 	}
 

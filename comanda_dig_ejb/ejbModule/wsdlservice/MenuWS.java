@@ -20,15 +20,15 @@ public interface MenuWS {
 	@WebMethod
 	public abstract List<CategoriaMenu> findAllCategoria();
 	@WebMethod
-	public abstract void saveItem(ItemMenu itemMenu);
+	public abstract void saveItem(Produto itemMenu);
 	@WebMethod
-	public abstract ItemMenu updateItem(ItemMenu itemMenu);
+	public abstract Produto updateItem(Produto itemMenu);
 	@WebMethod
-	public abstract void deleteItem(ItemMenu itemMenu);
+	public abstract void deleteItem(Produto itemMenu);
 	@WebMethod
-	public abstract ItemMenu findItem(Long id);
+	public abstract Produto findItem(Long id);
 	@WebMethod
-	public abstract List<ItemMenu> findAllItem();
+	public abstract List<Produto> findAllItem();
 	
 	*/
 	

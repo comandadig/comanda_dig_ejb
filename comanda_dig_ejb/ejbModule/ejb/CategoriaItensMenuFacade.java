@@ -6,7 +6,7 @@ import javax.ejb.Local;
 
 import model.CategoriaMaster;
 import model.CategoriaMenu;
-import model.ItemMenu;
+import model.Produto;
 
 
 
@@ -23,15 +23,15 @@ public interface CategoriaItensMenuFacade {
 	
 	public abstract List<CategoriaMenu> findAllCategoria();
 	
-	public abstract void saveItem(ItemMenu itemMenu);
+	public abstract void saveItem(Produto produto);
 
-	public abstract ItemMenu updateItem(ItemMenu itemMenu);
+	public abstract Produto updateItem(Produto produto);
 	
-	public abstract void deleteItem(ItemMenu itemMenu);
+	public abstract void deleteItem(Produto produto);
 
-	public abstract ItemMenu findItem(Long id);
+	public abstract Produto findItem(Long id);
 	
-	public abstract List<ItemMenu> findAllItem();
+	public abstract List<Produto> findAllItem();
 	
 	public abstract void saveCategoriaMaster(CategoriaMaster categoriaMaster);
 
