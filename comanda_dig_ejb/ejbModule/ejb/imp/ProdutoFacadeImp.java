@@ -7,88 +7,88 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 
-import model.CategoriaMaster;
-import model.CategoriaMenu;
-import model.Produto;
+import dao.CategoriaDAO;
 import dao.CategoriaMasterDAO;
-import dao.CategoriaMenuDAO;
-import dao.ItemMenuDAO;
-import ejb.CategoriaItensMenuFacade;
+import dao.ProdutoDAO;
+import ejb.ProdutoFacade;
+import model.Categoria;
+import model.CategoriaMaster;
+import model.Produto;
 
 
 
 /**
- * Session Bean implementation class CategoriaItensMenuFacadeImp
+ * Session Bean implementation class ProdutoFacadeImp
  */
 @Stateless
-  public class CategoriaItensMenuFacadeImp implements CategoriaItensMenuFacade {
+  public class ProdutoFacadeImp implements ProdutoFacade {
 
     @EJB
-    private CategoriaMenuDAO categoriaMenuDAO;
+    private CategoriaDAO categoriaDAO;
     @EJB
-    private ItemMenuDAO itemMenuDAO;
+    private ProdutoDAO produtoDAO;
     @EJB
     private CategoriaMasterDAO categoriaMasterDAO;
    
 	@Override
-	public void saveCategoria(CategoriaMenu categoriaMenu) {
-		categoriaMenuDAO.save(categoriaMenu);		
+	public void saveCategoria(Categoria categoriaMenu) {
+		categoriaDAO.save(categoriaMenu);		
 		
 	}
 
 	@Override
-	public CategoriaMenu updateCategoria(CategoriaMenu categoriaMenu) {		
-		return categoriaMenuDAO.update(categoriaMenu);
+	public Categoria updateCategoria(Categoria categoriaMenu) {		
+		return categoriaDAO.update(categoriaMenu);
 	}
 
 	@Override
-	public void deleteCategoria(CategoriaMenu categoriaMenu) {
-		categoriaMenuDAO.delete(categoriaMenu);
+	public void deleteCategoria(Categoria categoriaMenu) {
+		categoriaDAO.delete(categoriaMenu);
 	}
 
 	@Override
-	public CategoriaMenu findCategoria(Long entityID) {
+	public Categoria findCategoria(Long entityID) {
 		
-		return categoriaMenuDAO.find(entityID);
+		return categoriaDAO.find(entityID);
 	}
 
 	@Override
-	public List<CategoriaMenu> findAllCategoria() {
-		return categoriaMenuDAO.findAll();
-	}
-
-	@Override
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void saveItem(Produto itemMenu) {
-		CategoriaMenu categoriaMenu = categoriaMenuDAO.find(itemMenu.getCategoriaMenu().getIdCategoriaMenu());
-		itemMenu.setCategoriaMenu(categoriaMenu);
-		this.itemMenuDAO.save(itemMenu);
+	public List<Categoria> findAllCategoria() {
+		return categoriaDAO.findAll();
 	}
 
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Produto updateItem(Produto itemMenu) {
-		itemMenuDAO.update(itemMenu);
-		if (itemMenu.getCategoriaMenu() != null){
-			CategoriaMenu categoriaMenu = categoriaMenuDAO.find(itemMenu.getCategoriaMenu().getIdCategoriaMenu());
-			categoriaMenuDAO.update(categoriaMenu);
+	public void saveProduto(Produto produto) {
+		Categoria categoriaMenu = categoriaDAO.find(produto.getCategoria().getIdCategoria());
+		produto.setCategoria(categoriaMenu);
+		this.produtoDAO.save(produto);
+	}
+
+	@Override
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Produto updateProduto(Produto produto) {
+		produtoDAO.update(produto);
+		if (produto.getCategoria() != null){
+			Categoria categoriaMenu = categoriaDAO.find(produto.getCategoria().getIdCategoria());
+			categoriaDAO.update(categoriaMenu);
 		}
-		return itemMenu;
+		return produto;
 	}
 
 	@Override
-	public void deleteItem(Produto itemMenu) {
-		this.itemMenuDAO.delete(itemMenu);
+	public void deleteProduto(Produto produto) {
+		this.produtoDAO.delete(produto);
 	}
 
 	@Override
-	public Produto findItem(Long id) {
-		return this.itemMenuDAO.find(id);
+	public Produto findProduto(Long id) {
+		return this.produtoDAO.find(id);
 	}
 
 	@Override
-	public List<Produto> findAllItem() {
-		return this.itemMenuDAO.findAll();
+	public List<Produto> findAllProduto() {
+		return this.produtoDAO.findAll();
 	}
 
 	@Override

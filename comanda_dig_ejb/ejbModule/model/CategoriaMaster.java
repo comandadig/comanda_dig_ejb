@@ -52,7 +52,7 @@ public class CategoriaMaster implements Serializable {
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="id_categoria_master",nullable = true)
-	private List<CategoriaMenu> categoriaMenus;
+	private List<Categoria> categoriaMenus;
 
 	public CategoriaMaster() {
 	}
@@ -99,13 +99,13 @@ public class CategoriaMaster implements Serializable {
 
 	
 
-	public List<CategoriaMenu> getCategoriaMenus() {
+	public List<Categoria> getCategoriaMenus() {
 		return categoriaMenus;
 	}
 
 
 
-	public void setCategoriaMenus(List<CategoriaMenu> categoriaMenus) {
+	public void setCategoriaMenus(List<Categoria> categoriaMenus) {
 		this.categoriaMenus = categoriaMenus;
 	}
 

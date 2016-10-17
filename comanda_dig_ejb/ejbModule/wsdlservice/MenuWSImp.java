@@ -11,30 +11,30 @@ package wsdlservice;
 public class MenuWSImp implements MenuWS {
 
 	@EJB
-	private CategoriaItensMenuFacade categoriaItensMenuFacade;
+	private ProdutoFacade categoriaItensMenuFacade;
 
 	@Override
-	public void saveCategoria(CategoriaMenu categoriaMenu) {
+	public void saveCategoria(Categoria categoriaMenu) {
 		this.categoriaItensMenuFacade.saveCategoria(categoriaMenu);
 	}
 
 	@Override
-	public CategoriaMenu updateCategoria(CategoriaMenu categoriaMenu) {
+	public Categoria updateCategoria(Categoria categoriaMenu) {
 		return this.categoriaItensMenuFacade.updateCategoria(categoriaMenu);
 	}
 
 	@Override
-	public void deleteCategoria(CategoriaMenu categoriaMenu) {
+	public void deleteCategoria(Categoria categoriaMenu) {
 		this.categoriaItensMenuFacade.deleteCategoria(categoriaMenu);
 	}
 
 	@Override
-	public CategoriaMenu findCategoria(Long id) {
+	public Categoria findCategoria(Long id) {
 		return this.categoriaItensMenuFacade.findCategoria(id);
 	}
 
 	@Override
-	public List<CategoriaMenu> findAllCategoria() {
+	public List<Categoria> findAllCategoria() {
 		return categoriaItensMenuFacade.findAllCategoria();
 	}
 

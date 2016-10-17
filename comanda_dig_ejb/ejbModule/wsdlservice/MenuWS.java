@@ -10,15 +10,15 @@ package wsdlservice;
 public interface MenuWS {
 	
 	@WebMethod
-	public abstract void saveCategoria(CategoriaMenu categoriaMenu);
+	public abstract void saveCategoria(Categoria categoriaMenu);
 	@WebMethod
-	public abstract CategoriaMenu updateCategoria(CategoriaMenu categoriaMenu);
+	public abstract Categoria updateCategoria(Categoria categoriaMenu);
 	@WebMethod
-	public abstract void deleteCategoria(CategoriaMenu categoriaMenu);
+	public abstract void deleteCategoria(Categoria categoriaMenu);
 	@WebMethod
-	public abstract CategoriaMenu findCategoria(Long id);
+	public abstract Categoria findCategoria(Long id);
 	@WebMethod
-	public abstract List<CategoriaMenu> findAllCategoria();
+	public abstract List<Categoria> findAllCategoria();
 	@WebMethod
 	public abstract void saveItem(Produto itemMenu);
 	@WebMethod

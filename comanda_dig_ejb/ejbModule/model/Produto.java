@@ -69,8 +69,8 @@ public class Produto implements Serializable {
 	
 	@XmlTransient
 	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="id_categoria_menu", referencedColumnName="id_categoria_menu")
-	private CategoriaMenu categoriaMenu;
+	@JoinColumn(name="id_categoria", referencedColumnName="id_categoria")
+	private Categoria categoria;
 	
 	@XmlTransient
 	@OneToMany(mappedBy="produto")
@@ -156,12 +156,12 @@ public class Produto implements Serializable {
 		this.valor = valor;
 	}
 
-	public CategoriaMenu getCategoriaMenu() {
-		return categoriaMenu;
+	public Categoria getCategoria() {
+		return categoria;
 	}
 
-	public void setCategoriaMenu(CategoriaMenu categoriaMenu) {
-		this.categoriaMenu = categoriaMenu;
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 
 	public List<Pedido> getPedidos() {
@@ -180,7 +180,7 @@ public class Produto implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((categoriaMenu == null) ? 0 : categoriaMenu.hashCode());
+		result = prime * result + ((categoria == null) ? 0 : categoria.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(desconto);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -206,10 +206,10 @@ public class Produto implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Produto other = (Produto) obj;
-		if (categoriaMenu == null) {
-			if (other.categoriaMenu != null)
+		if (categoria == null) {
+			if (other.categoria != null)
 				return false;
-		} else if (!categoriaMenu.equals(other.categoriaMenu))
+		} else if (!categoria.equals(other.categoria))
 			return false;
 		if (Double.doubleToLongBits(desconto) != Double.doubleToLongBits(other.desconto))
 			return false;
@@ -264,12 +264,6 @@ public class Produto implements Serializable {
 	}
 
 	
-	
-	
-
-
-	
-
 
 
 

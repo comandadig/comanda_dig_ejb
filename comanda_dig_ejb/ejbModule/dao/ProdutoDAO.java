@@ -7,9 +7,9 @@ import model.Produto;
 
 
 @Stateless
-public class ItemMenuDAO extends GenericDAO<Produto> {
+public class ProdutoDAO extends GenericDAO<Produto> {
 	
-	public ItemMenuDAO() {
+	public ProdutoDAO() {
 		super(Produto.class);
 	}
 	

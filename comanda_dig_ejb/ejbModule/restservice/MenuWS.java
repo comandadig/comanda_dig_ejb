@@ -10,8 +10,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import ejb.CategoriaItensMenuFacade;
-import model.CategoriaMenu;
+import ejb.ProdutoFacade;
+import model.Categoria;
 
 @Path("/rest/menu")
 @Stateless(name = "MenuWS")
@@ -19,25 +19,25 @@ import model.CategoriaMenu;
 public class MenuWS {
 
 	@EJB
-	private CategoriaItensMenuFacade facade;
+	private ProdutoFacade facade;
 
 
 	@GET
 	@Path("/allCategorias")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<CategoriaMenu> getAllCategorias() {
-		List<CategoriaMenu> cat =  facade.findAllCategoria();
+	public List<Categoria> getAllCategorias() {
+		List<Categoria> cat =  facade.findAllCategoria();
 		
 		return cat;
 	}
 
 
-	public CategoriaItensMenuFacade getFacade() {
+	public ProdutoFacade getFacade() {
 		return facade;
 	}
 
 
-	public void setFacade(CategoriaItensMenuFacade facade) {
+	public void setFacade(ProdutoFacade facade) {
 		this.facade = facade;
 	}
 	
