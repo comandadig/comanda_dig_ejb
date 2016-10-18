@@ -69,7 +69,7 @@ public class Produto implements Serializable {
 	
 	@XmlTransient
 	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="id_categoria", referencedColumnName="id_categoria")
+	@JoinColumn(name="id_categoria", referencedColumnName="id_categoria",nullable = true)
 	private Categoria categoria;
 	
 	@XmlTransient

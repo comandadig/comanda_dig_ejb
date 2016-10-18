@@ -55,7 +55,7 @@ public class Categoria implements Serializable {
 	private String nome;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="id_categoria")
+	@JoinColumn(name="id_categoria",nullable = true)
 	private List<Produto> produtosList;
 
 	@XmlTransient
