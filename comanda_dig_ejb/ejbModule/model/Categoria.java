@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -54,12 +53,12 @@ public class Categoria implements Serializable {
 
 	private String nome;
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER)
 	@JoinColumn(name="id_categoria",nullable = true)
 	private List<Produto> produtosList;
 
 	@XmlTransient
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="id_categoria_master", referencedColumnName="id_categoria_master",nullable = true)
 	private CategoriaMaster categoriaMaster;
 	
