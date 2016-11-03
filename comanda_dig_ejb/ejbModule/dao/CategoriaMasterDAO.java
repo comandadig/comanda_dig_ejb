@@ -2,15 +2,15 @@ package dao;
 
 import javax.ejb.Stateless;
 
-import model.CategoriaMaster;
+import model.Menu;
 
 
 
 @Stateless
-public class CategoriaMasterDAO extends GenericDAO<CategoriaMaster> {
+public class CategoriaMasterDAO extends GenericDAO<Menu> {
 	
 	public CategoriaMasterDAO() {
-		super(CategoriaMaster.class);
+		super(Menu.class);
 	}
 	
 	

@@ -59,8 +59,8 @@ public class Categoria implements Serializable {
 
 	@XmlTransient
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="id_categoria_master", referencedColumnName="id_categoria_master",nullable = true)
-	private CategoriaMaster categoriaMaster;
+	@JoinColumn(name="id_menu", referencedColumnName="id_menu",nullable = true)
+	private Menu menu;
 	
 	public Categoria() {
 	}
@@ -121,12 +121,12 @@ public class Categoria implements Serializable {
 		this.produtosList = produtosList;
 	}
 
-	public CategoriaMaster getCategoriaMaster() {
-		return categoriaMaster;
+	public Menu getCategoriaMaster() {
+		return menu;
 	}
 
-	public void setCategoriaMaster(CategoriaMaster categoriaMaster) {
-		this.categoriaMaster = categoriaMaster;
+	public void setCategoriaMaster(Menu menu) {
+		this.menu = menu;
 	}
 
 	public static long getSerialversionuid() {
@@ -137,7 +137,7 @@ public class Categoria implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((categoriaMaster == null) ? 0 : categoriaMaster.hashCode());
+		result = prime * result + ((menu == null) ? 0 : menu.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(desconto);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -159,10 +159,10 @@ public class Categoria implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Categoria other = (Categoria) obj;
-		if (categoriaMaster == null) {
-			if (other.categoriaMaster != null)
+		if (menu == null) {
+			if (other.menu != null)
 				return false;
-		} else if (!categoriaMaster.equals(other.categoriaMaster))
+		} else if (!menu.equals(other.menu))
 			return false;
 		if (Double.doubleToLongBits(desconto) != Double.doubleToLongBits(other.desconto))
 			return false;

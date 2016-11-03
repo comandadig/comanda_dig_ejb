@@ -26,17 +26,17 @@ import javax.xml.bind.annotation.XmlTransient;
  * 
  */
 @Entity
-@Table(name="categoria_master")
-@NamedQuery(name="CategoriaMaster.findAll", query="SELECT c FROM CategoriaMaster c")
+@Table(name="menu")
+@NamedQuery(name="Menu.findAll", query="SELECT c FROM Menu c")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
-public class CategoriaMaster implements Serializable {
+public class Menu implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="id_categoria_master")
+	@Column(name="id_Menu")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long idCategoriaMaster;
+	private Long idMenu;
 
 
 	private String descricao;
@@ -54,62 +54,24 @@ public class CategoriaMaster implements Serializable {
 	@JoinColumn(name="id_categoria_master",nullable = true)
 	private List<Categoria> categoriaMenus;
 
-	public CategoriaMaster() {
+	public Menu() {
 	}
 
-	
-
-	public Long getIdCategoriaMaster() {
-		return idCategoriaMaster;
+	public Long getIdMenu() {
+		return idMenu;
 	}
 
-
-
-	public void setIdCategoriaMaster(Long idCategoriaMaster) {
-		this.idCategoriaMaster = idCategoriaMaster;
+	public void setIdMenu(Long idMenu) {
+		this.idMenu = idMenu;
 	}
-
-
 
 	public String getDescricao() {
-		return this.descricao;
+		return descricao;
 	}
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
-	public byte[] getFoto() {
-		return this.foto;
-	}
-
-	
-
-	public void setFoto(byte[] foto) {
-		this.foto = foto;
-	}
-
-	public String getNome() {
-		return this.nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	
-
-	public List<Categoria> getCategoriaMenus() {
-		return categoriaMenus;
-	}
-
-
-
-	public void setCategoriaMenus(List<Categoria> categoriaMenus) {
-		this.categoriaMenus = categoriaMenus;
-	}
-
-
 
 	public String getDirfoto() {
 		return dirfoto;
@@ -118,6 +80,38 @@ public class CategoriaMaster implements Serializable {
 	public void setDirfoto(String dirfoto) {
 		this.dirfoto = dirfoto;
 	}
+
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public List<Categoria> getCategoriaMenus() {
+		return categoriaMenus;
+	}
+
+	public void setCategoriaMenus(List<Categoria> categoriaMenus) {
+		this.categoriaMenus = categoriaMenus;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
+
+	
 
 	
 

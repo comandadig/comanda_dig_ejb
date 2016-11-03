@@ -12,7 +12,7 @@ import dao.CategoriaMasterDAO;
 import dao.ProdutoDAO;
 import ejb.ProdutoFacade;
 import model.Categoria;
-import model.CategoriaMaster;
+import model.Menu;
 import model.Produto;
 
 
@@ -92,33 +92,33 @@ import model.Produto;
 	}
 
 	@Override
-	public void saveCategoriaMaster(CategoriaMaster categoriaMaster) {
-		categoriaMasterDAO.save(categoriaMaster);
+	public void saveCategoriaMaster(Menu menu) {
+		categoriaMasterDAO.save(menu);
 	}
 
 	@Override
-	public CategoriaMaster updateCategoriaMaster(CategoriaMaster categoriaMaster) {
-		CategoriaMaster master = this.categoriaMasterDAO.find(categoriaMaster.getIdCategoriaMaster());
-		master.setDescricao(categoriaMaster.getDescricao());
-		master.setDirfoto(categoriaMaster.getDirfoto());
-		master.setFoto(categoriaMaster.getFoto());
-		master.setNome(categoriaMaster.getNome());
-		master.setCategoriaMenus(categoriaMaster.getCategoriaMenus());
+	public Menu updateCategoriaMaster(Menu menu) {
+		Menu master = this.categoriaMasterDAO.find(menu.getIdMenu());
+		master.setDescricao(menu.getDescricao());
+		master.setDirfoto(menu.getDirfoto());
+		master.setFoto(menu.getFoto());
+		master.setNome(menu.getNome());
+		master.setCategoriaMenus(menu.getCategoriaMenus());
 		return categoriaMasterDAO.update(master);
 	}
 
 	@Override
-	public void deleteCategoriaMaster(CategoriaMaster categoriaMaster) {
-		categoriaMasterDAO.delete(categoriaMaster);
+	public void deleteCategoriaMaster(Menu menu) {
+		categoriaMasterDAO.delete(menu);
 	}
 
 	@Override
-	public CategoriaMaster findCategoriaMaster(Long id) {
+	public Menu findCategoriaMaster(Long id) {
 		return categoriaMasterDAO.find(id);
 	}
 
 	@Override
-	public List<CategoriaMaster> findAllCategoriaMaster() {
+	public List<Menu> findAllCategoriaMaster() {
 		return categoriaMasterDAO.findAll();
 	}
 

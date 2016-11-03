@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
-import model.CategoriaMaster;
+import model.Menu;
 import model.Categoria;
 import model.Produto;
 
@@ -38,15 +38,15 @@ public interface ProdutoFacade {
 	
 	//-----------------
 	
-	public abstract void saveCategoriaMaster(CategoriaMaster categoriaMaster);
+	public abstract void saveCategoriaMaster(Menu menu);
 
-	public abstract CategoriaMaster updateCategoriaMaster(CategoriaMaster categoriaMaster);
+	public abstract Menu updateCategoriaMaster(Menu menu);
 	
-	public abstract void deleteCategoriaMaster(CategoriaMaster categoriaMaster);
+	public abstract void deleteCategoriaMaster(Menu menu);
 
-	public abstract CategoriaMaster findCategoriaMaster(Long id);
+	public abstract Menu findCategoriaMaster(Long id);
 	
-	public abstract List<CategoriaMaster> findAllCategoriaMaster();
+	public abstract List<Menu> findAllCategoriaMaster();
 	
 	
 	
