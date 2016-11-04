@@ -18,6 +18,9 @@ public class ComandaDAO extends GenericDAO<Comanda> {
 	}
 	
 	
+	private final String CONSULTA_COMANDA= "";
+			
+	
 	
 	public Comanda buscarComanda(String codComanda) {
 		Map<String, Object> parameters = new HashMap<>();
