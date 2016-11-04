@@ -34,7 +34,7 @@ public class Menu implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="id_Menu")
+	@Column(name="id_menu")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idMenu;
 
@@ -51,8 +51,8 @@ public class Menu implements Serializable {
 	private String nome;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="id_categoria_master",nullable = true)
-	private List<Categoria> categoriaMenus;
+	@JoinColumn(name="id_menu",nullable = true)
+	private List<Categoria> categorias;
 
 	public Menu() {
 	}
@@ -97,12 +97,14 @@ public class Menu implements Serializable {
 		this.nome = nome;
 	}
 
-	public List<Categoria> getCategoriaMenus() {
-		return categoriaMenus;
+	
+
+	public List<Categoria> getCategorias() {
+		return categorias;
 	}
 
-	public void setCategoriaMenus(List<Categoria> categoriaMenus) {
-		this.categoriaMenus = categoriaMenus;
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
 	}
 
 	public static long getSerialversionuid() {

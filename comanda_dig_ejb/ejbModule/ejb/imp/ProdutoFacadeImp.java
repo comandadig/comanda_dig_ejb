@@ -8,7 +8,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 
 import dao.CategoriaDAO;
-import dao.CategoriaMasterDAO;
+import dao.MenuDAO;
 import dao.ProdutoDAO;
 import ejb.ProdutoFacade;
 import model.Categoria;
@@ -28,7 +28,7 @@ import model.Produto;
     @EJB
     private ProdutoDAO produtoDAO;
     @EJB
-    private CategoriaMasterDAO categoriaMasterDAO;
+    private MenuDAO menuDAO;
    
 	@Override
 	public void saveCategoria(Categoria categoriaMenu) {
@@ -92,34 +92,54 @@ import model.Produto;
 	}
 
 	@Override
-	public void saveCategoriaMaster(Menu menu) {
-		categoriaMasterDAO.save(menu);
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void saveMenu(Menu menu) {
+		menuDAO.save(menu);
+		
+		if (menu.getCategorias() != null){
+			
+			for (Categoria categoria : menu.getCategorias()) {
+				categoria.setCategoriaMaster(menu);
+				this.categoriaDAO.update(categoria);
+			}
+		}
 	}
 
 	@Override
-	public Menu updateCategoriaMaster(Menu menu) {
-		Menu master = this.categoriaMasterDAO.find(menu.getIdMenu());
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Menu updateMenu(Menu menu) {
+		Menu master = this.menuDAO.find(menu.getIdMenu());
 		master.setDescricao(menu.getDescricao());
 		master.setDirfoto(menu.getDirfoto());
 		master.setFoto(menu.getFoto());
 		master.setNome(menu.getNome());
-		master.setCategoriaMenus(menu.getCategoriaMenus());
-		return categoriaMasterDAO.update(master);
+		master.setCategorias(menu.getCategorias());
+		
+		
+		if (master.getCategorias() != null){
+			
+			for (Categoria categoria : menu.getCategorias()) {
+				categoria.setCategoriaMaster(menu);
+				this.categoriaDAO.update(categoria);
+			}
+		}
+		
+		return menuDAO.update(master);
 	}
 
 	@Override
-	public void deleteCategoriaMaster(Menu menu) {
-		categoriaMasterDAO.delete(menu);
+	public void deleteMenu(Menu menu) {
+		menuDAO.delete(menu);
 	}
 
 	@Override
-	public Menu findCategoriaMaster(Long id) {
-		return categoriaMasterDAO.find(id);
+	public Menu findMenu(Long id) {
+		return menuDAO.find(id);
 	}
 
 	@Override
-	public List<Menu> findAllCategoriaMaster() {
-		return categoriaMasterDAO.findAll();
+	public List<Menu> findAllMenu() {
+		return menuDAO.findAll();
 	}
 
 	

@@ -38,15 +38,15 @@ public interface ProdutoFacade {
 	
 	//-----------------
 	
-	public abstract void saveCategoriaMaster(Menu menu);
+	public abstract void saveMenu (Menu menu);
 
-	public abstract Menu updateCategoriaMaster(Menu menu);
+	public abstract Menu updateMenu(Menu menu);
 	
-	public abstract void deleteCategoriaMaster(Menu menu);
+	public abstract void deleteMenu(Menu menu);
 
-	public abstract Menu findCategoriaMaster(Long id);
+	public abstract Menu findMenu(Long id);
 	
-	public abstract List<Menu> findAllCategoriaMaster();
+	public abstract List<Menu> findAllMenu();
 	
 	
 	

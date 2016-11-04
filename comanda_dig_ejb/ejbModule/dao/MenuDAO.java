@@ -7,9 +7,9 @@ import model.Menu;
 
 
 @Stateless
-public class CategoriaMasterDAO extends GenericDAO<Menu> {
+public class MenuDAO extends GenericDAO<Menu> {
 	
-	public CategoriaMasterDAO() {
+	public MenuDAO() {
 		super(Menu.class);
 	}
 	
