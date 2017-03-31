@@ -154,4 +154,10 @@ public class CaixaFacadeImp implements CaixaFacade {
 	}
 	
 	
+	public Caixa buscarCaixaDisponivel(){
+		List<Caixa> list = caixaDAO.executeNamedQuery(Caixa.CAIXA_DISPONIVEL, null);
+		 return list != null && !list.isEmpty() ? list.get(0) : null; 
+	}
+	
+	
 }

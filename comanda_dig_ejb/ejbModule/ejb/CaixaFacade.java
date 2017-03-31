@@ -30,5 +30,6 @@ public interface CaixaFacade {
 	
 	public abstract List<Comanda> findComandasByCaixa(Caixa caixa, SituacaoComanda situacaoComanda);
 	
+	public Caixa buscarCaixaDisponivel();
 
 }

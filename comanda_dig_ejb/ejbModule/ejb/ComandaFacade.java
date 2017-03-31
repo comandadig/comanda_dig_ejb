@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import exception.ComandaException;
 import model.Comanda;
 
 
@@ -21,6 +22,7 @@ public interface ComandaFacade {
 	
 	public abstract List<Comanda> findAll();
 	
+	public abstract Comanda vericaAberturaComanda(String codigoComanda) throws ComandaException;
 	
 	public abstract Comanda buscarComanda(String codComanda);
 	

@@ -13,9 +13,11 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Caixa.findAll", query="SELECT c FROM Caixa c")
+@NamedQuery(name="Caixa.caixaDisponivel", query="SELECT c FROM Caixa c where c.situacao = 'ABERTO'")
 public class Caixa implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	public static final String CAIXA_DISPONIVEL = "Caixa.caixaDisponivel";
 
 	@Id
 	@Column(name="id_caixa")
