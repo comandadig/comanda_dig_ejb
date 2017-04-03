@@ -17,6 +17,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -58,8 +59,12 @@ public class Produto implements Serializable {
 	private byte[] foto;
 
 	private String nome;
-
-	private String quant;
+	
+	@Transient
+	private Integer quant =1;
+	
+	@Transient
+	private boolean hasPedido = false;
 
 	private String situacao;
 
@@ -131,11 +136,11 @@ public class Produto implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getQuant() {
+	public Integer getQuant() {
 		return quant;
 	}
 
-	public void setQuant(String quant) {
+	public void setQuant(Integer quant) {
 		this.quant = quant;
 	}
 
@@ -262,8 +267,24 @@ public class Produto implements Serializable {
 		return true;
 	}
 
-	
+	public boolean isHasPedido() {
+		return hasPedido;
+	}
 
+	public void setHasPedido(boolean hasPedido) {
+		this.hasPedido = hasPedido;
+	}
+
+	
+	
+	public Double valorTot(){
+		
+		if (this.valor != null && this.quant !=null){
+			return valor * quant;
+		} else {
+			return 0.00d;
+		}
+	}
 
 
 	

@@ -101,4 +101,25 @@ public class ComandaFacadeImp implements ComandaFacade {
 	}
 	
 	
+	@Override
+	public Comanda vericaComandaPedido(String codigoComanda) throws ComandaException{
+		
+		Caixa caixa = caixaFacade.buscarCaixaDisponivel();
+		if (caixa == null) throw new ComandaException(CAIXA_NAO_ESTA_ABERTO);
+		
+		Comanda comanda = comandaDAO.buscarComanda(codigoComanda);
+		if (comanda != null){
+			if (comanda.getSituacao().equals(SituacaoComanda.ABERTO.getValue())){
+				comanda.setCaixa(caixa);
+				return comanda;
+			} else {
+				throw new ComandaException(COMANDA_NAO_ESTA_DISPONIVEL);
+			}
+			
+		} else {
+			 throw new ComandaException(COMANDA_NAO_CADASTRADA);
+		}
+	}
+	
+	
 }
