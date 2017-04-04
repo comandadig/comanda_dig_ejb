@@ -11,19 +11,17 @@ import java.util.List;
  */
 @Entity
 @Table(name="pedidos_comanda")
-@NamedQuery(name="PedidosComanda.findAll", query="SELECT p FROM PedidosComanda p")
+@NamedQuery(name="PedidosComanda.findByComanda", query="SELECT p FROM PedidosComanda p where p.comanda.idComanda = :idComanda")
 public class PedidosComanda implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	public static final String FIND_BY_COMANDA = "PedidosComanda.findByComanda";
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_pedidos_comanda")
 	private Long idPedidosComanda;
 
-	private String mesa;
-
-	@Column(name="valor_total_pedidos")
-	private double valorTotalPedidos;
 
 	//bi-directional many-to-one association to Comanda
 	@ManyToOne
@@ -45,21 +43,6 @@ public class PedidosComanda implements Serializable {
 		this.idPedidosComanda = idPedidosComanda;
 	}
 
-	public String getMesa() {
-		return this.mesa;
-	}
-
-	public void setMesa(String mesa) {
-		this.mesa = mesa;
-	}
-
-	public double getValorTotalPedidos() {
-		return this.valorTotalPedidos;
-	}
-
-	public void setValorTotalPedidos(double valorTotalPedidos) {
-		this.valorTotalPedidos = valorTotalPedidos;
-	}
 
 	public Comanda getComanda() {
 		return this.comanda;

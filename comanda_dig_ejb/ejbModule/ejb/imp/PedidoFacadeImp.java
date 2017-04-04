@@ -2,16 +2,26 @@ package ejb.imp;
 
 
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+
+import com.sun.javafx.collections.MappingChange.Map;
 
 import dao.ComandaDAO;
 import dao.PedidoDAO;
+import dao.PedidosComandaDAO;
 import ejb.PedidoFacade;
 import model.Comanda;
 import model.Pedido;
+import model.PedidosComanda;
+import model.Produto;
+import model.User;
 
 
 
@@ -25,7 +35,8 @@ public class PedidoFacadeImp implements PedidoFacade {
     private PedidoDAO pedidoDAO;
     @EJB
     private ComandaDAO comandaDAO;
-   
+    @EJB
+    private PedidosComandaDAO pedidosComandaDAO;
     
     public PedidoFacadeImp() {
     	
@@ -70,6 +81,42 @@ public class PedidoFacadeImp implements PedidoFacade {
 	@Override
 	public Comanda buscarComanda(String codComanda) {
 		return comandaDAO.buscarComanda(codComanda);
+	}
+
+
+	@Override
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public boolean fecharPedido(List<Produto> produtos, Comanda comanda, User user) {
+		
+		PedidosComanda pedidosComanda = new PedidosComanda();
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("idComanda",comanda.getIdComanda());
+		List<PedidosComanda> comandas = pedidosComandaDAO.executeNamedQuery(PedidosComanda.FIND_BY_COMANDA,map);
+		
+		if (comandas != null && !comandas.isEmpty()){
+			pedidosComanda = comandas.get(0);
+		} else {
+			pedidosComanda.setComanda(comanda);
+			pedidosComandaDAO.save(pedidosComanda);
+		}
+		
+		for (Produto produto : produtos) {
+			Pedido pedido = new Pedido();
+			pedido.setDtIniFila(new Date());
+			pedido.setProduto(produto);
+			pedido.setObs(produto.getObs());
+			pedido.setQuantItem(produto.getQuant());
+			pedido.setUser(user);
+			pedido.setPedidosComanda(pedidosComanda);
+			
+			pedidoDAO.save(pedido);
+		}
+		
+		
+		
+		
+		return false;
 	}
 
 

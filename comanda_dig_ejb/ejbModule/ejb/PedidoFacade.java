@@ -6,6 +6,8 @@ import javax.ejb.Local;
 
 import model.Comanda;
 import model.Pedido;
+import model.Produto;
+import model.User;
 
 
 
@@ -23,6 +25,9 @@ public interface PedidoFacade {
 	public abstract List<Pedido> findAll();
 	
 	public abstract Comanda buscarComanda(String codCoamnda);
+	
+	
+	public abstract boolean fecharPedido(List<Produto> produtos, Comanda comanda, User user);
 	
 	
 	

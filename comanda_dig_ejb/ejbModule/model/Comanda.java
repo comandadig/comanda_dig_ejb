@@ -43,6 +43,7 @@ public class Comanda implements Serializable {
 	private String telefone;
 	private String documento;
 	private Boolean sexo;
+	private Integer mesa;
 	
 	public Comanda() {
 	}
@@ -117,6 +118,14 @@ public class Comanda implements Serializable {
 
 	public void setSexo(Boolean sexo) {
 		this.sexo = sexo;
+	}
+
+	public Integer getMesa() {
+		return mesa;
+	}
+
+	public void setMesa(Integer mesa) {
+		this.mesa = mesa;
 	}
 
 	

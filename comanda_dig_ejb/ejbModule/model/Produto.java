@@ -65,10 +65,15 @@ public class Produto implements Serializable {
 	
 	@Transient
 	private boolean hasPedido = false;
+	
+	@Transient
+	private String obs;
 
 	private String situacao;
 
 	private Double valor;
+	
+	private String fila;
 	
 	
 	@XmlTransient
@@ -284,6 +289,22 @@ public class Produto implements Serializable {
 		} else {
 			return 0.00d;
 		}
+	}
+
+	public String getFila() {
+		return fila;
+	}
+
+	public void setFila(String fila) {
+		this.fila = fila;
+	}
+
+	public String getObs() {
+		return obs;
+	}
+
+	public void setObs(String obs) {
+		this.obs = obs;
 	}
 
 

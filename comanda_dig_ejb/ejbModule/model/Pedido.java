@@ -57,17 +57,10 @@ public class Pedido implements Serializable {
 	@JoinColumn(name="id_user")
 	private User user;
 	
-	public Produto getItemMenu() {
-		return produto;
-	}
-
-	public void setItemMenu(Produto produto) {
-		this.produto = produto;
-	}
-
+	
 	//bi-directional many-to-one association to User
 	@ManyToOne
-	@JoinColumn(name="id_item_menu")
+	@JoinColumn(name="id_produto")
 	private Produto produto;
 
 	
@@ -122,9 +115,13 @@ public class Pedido implements Serializable {
 
 
 
-	
+	public Produto getProduto() {
+		return produto;
+	}
 
-	
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
 
 	public PedidosComanda getPedidosComanda() {
 		return this.pedidosComanda;
