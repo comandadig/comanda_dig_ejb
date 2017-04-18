@@ -11,7 +11,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import ejb.UserFacade;
 import model.User;
@@ -41,13 +40,11 @@ public class UserWS {
 	}
 	
 	
-	@GET
-	@Path("/teste")
+	@POST
+	@Path("/login")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response teste() {
-		String json ="teste...";
-		return Response.ok().entity("Hello, "+json).build();
-	   // return Response.ok(json, MediaType.APPLICATION_JSON).build();
+	public User login(User user) {
+		return userFacade.login(user);
 	}
 	
 	

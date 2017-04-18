@@ -21,7 +21,7 @@ public class CartaoComanda implements Serializable {
 	@Column(name="id_cartao_comanda")
 	private Long idCartaoComanda;
 
-	@Column(name="cod_comanda")
+	@Column(name="cod_comanda",unique=true)
 	private String codComanda;
 
 	private String situacao;

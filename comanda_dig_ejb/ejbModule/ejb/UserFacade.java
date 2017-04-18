@@ -31,7 +31,7 @@ public interface UserFacade {
 	
 	public abstract SalarioUser findSalarioByUser(Long idUser);
 	
-	public abstract Boolean autenticarUser(String email, String senha);
+	public abstract User login(User user);
 		
 	
 

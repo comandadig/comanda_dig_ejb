@@ -29,7 +29,7 @@ public class PedidosComanda implements Serializable {
 	private Comanda comanda;
 
 	//bi-directional many-to-one association to Pedido
-	@OneToMany(mappedBy="pedidosComanda")
+	@OneToMany(mappedBy="pedidosComanda",fetch=FetchType.EAGER)
 	private List<Pedido> pedidos;
 
 	public PedidosComanda() {

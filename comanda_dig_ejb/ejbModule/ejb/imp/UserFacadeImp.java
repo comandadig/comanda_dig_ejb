@@ -9,13 +9,13 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 
-import model.Endereco;
-import model.SalarioUser;
-import model.User;
 import dao.EnderecoDAO;
 import dao.SalarioUserDAO;
 import dao.UserDAO;
 import ejb.UserFacade;
+import model.Endereco;
+import model.SalarioUser;
+import model.User;
 
 
 
@@ -150,25 +150,21 @@ public class UserFacadeImp implements UserFacade {
 	}
 
 	@Override
-	public Boolean autenticarUser(String login, String senha) {
-		
-		
-		List<User> users = this.dao.listarPorLogin(login);
-		if(users !=null && !users.isEmpty()){
-			User user = users.get(0);
-			if(user.getSenha().equals(senha)){
-				return true;
-				
+	public User login(User user) {
+		User u = new User();
+		List<User>  list = this.listarPorLogin(user.getLogin());
+		if (list != null && !list.isEmpty()){
+			u = list.get(0);
+			if (u.getSenha().equals(user.getSenha())){
+				u.setAutenticado(true);
+			} else {
+				u.setMsgAutenticacao("Senha Inválida !");
 			}
 			
+		} else {
+			u.setMsgAutenticacao("Login Inválido !");
 		}
-		return false;
+		return u;
 	}
-
-	
-
-	
-
-	
 	
 }

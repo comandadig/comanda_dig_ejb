@@ -76,6 +76,12 @@ public class User implements Serializable {
 	@OneToMany(mappedBy="user")
 	private List<Pedido> pedidos;
 	
+	@Transient
+	private boolean autenticado = false;
+	@Transient
+	private String msgAutenticacao = "";
+
+	
 	public User() {
 	}
 
@@ -84,17 +90,29 @@ public class User implements Serializable {
 		return idUser;
 	}
 
-
-
-
 	public void setIdUser(Long idUser) {
 		this.idUser = idUser;
 	}
 
 
+	public String getMsgAutenticacao() {
+		return msgAutenticacao;
+	}
 
 
+	public void setMsgAutenticacao(String msgAutenticacao) {
+		this.msgAutenticacao = msgAutenticacao;
+	}
 
+
+	public boolean isAutenticado() {
+		return autenticado;
+	}
+
+
+	public void setAutenticado(boolean autenticado) {
+		this.autenticado = autenticado;
+	}
 
 
 	public String getCelular() {

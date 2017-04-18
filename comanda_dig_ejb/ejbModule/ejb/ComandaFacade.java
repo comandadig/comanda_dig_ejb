@@ -6,6 +6,7 @@ import javax.ejb.Local;
 
 import exception.ComandaException;
 import model.Comanda;
+import model.PedidosComanda;
 
 
 
@@ -29,6 +30,8 @@ public interface ComandaFacade {
 	public abstract Comanda buscarComanda(String codComanda);
 	
 	public abstract Comanda abrirComanda(Comanda comanda);
+	
+	public PedidosComanda pedidosComanda(Comanda comanda);
 	
 
 }

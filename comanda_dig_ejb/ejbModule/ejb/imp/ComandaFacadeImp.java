@@ -2,17 +2,20 @@ package ejb.imp;
 
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import dao.ComandaDAO;
+import dao.PedidosComandaDAO;
 import ejb.CaixaFacade;
 import ejb.ComandaFacade;
 import exception.ComandaException;
 import model.Caixa;
 import model.Comanda;
+import model.PedidosComanda;
 import util.SituacaoComanda;
 
 
@@ -31,10 +34,10 @@ public class ComandaFacadeImp implements ComandaFacade {
 
 	@EJB
 	private ComandaDAO comandaDAO;
-	
 	@EJB
 	private CaixaFacade caixaFacade;
-	
+	@EJB
+	private PedidosComandaDAO pedidosComandaDAO;
 	
 	@Override
 	public void save(Comanda entity) {
@@ -121,5 +124,15 @@ public class ComandaFacadeImp implements ComandaFacade {
 		}
 	}
 	
-	
+	@Override
+	public PedidosComanda pedidosComanda(Comanda comanda){
+		
+		HashMap<String,Object> map = new HashMap<String, Object>();
+		map.put("idComanda", comanda.getIdComanda());
+		List<PedidosComanda> list = pedidosComandaDAO.executeNamedQuery(PedidosComanda.FIND_BY_COMANDA, map);
+		
+		if (list != null && !list.isEmpty()) 	return list.get(0);
+		
+		return null;
+	}
 }

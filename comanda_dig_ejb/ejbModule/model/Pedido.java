@@ -70,6 +70,15 @@ public class Pedido implements Serializable {
 	@OneToMany(mappedBy="pedido")
 	private List<PedidosFilaCozinha> filaCozinhas;
 	
+	
+	
+	public double getValor(){
+		double vl = 0;
+		if (this.produto != null) 		
+			return produto.getValor() * quantItem;
+		return vl;
+	}
+	
 	public Pedido() {
 	}
 

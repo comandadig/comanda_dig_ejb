@@ -11,8 +11,6 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 
-import com.sun.javafx.collections.MappingChange.Map;
-
 import dao.ComandaDAO;
 import dao.PedidoDAO;
 import dao.PedidosComandaDAO;
@@ -112,8 +110,6 @@ public class PedidoFacadeImp implements PedidoFacade {
 			
 			pedidoDAO.save(pedido);
 		}
-		
-		
 		
 		
 		return false;
