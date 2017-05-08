@@ -20,12 +20,10 @@ import dao.FilaBarDAO;
 import dao.FilaCozinhaDAO;
 import ejb.CaixaFacade;
 import model.Caixa;
-import model.CartaoComanda;
 import model.Comanda;
 import model.FilaBar;
 import model.FilaCozinha;
 import util.SituacaoCaixa;
-import util.SituacaoCartaoComanda;
 import util.SituacaoComanda;
 import util.SituacaoFilas;
 
@@ -103,19 +101,6 @@ public class CaixaFacadeImp implements CaixaFacade {
 		caixa.setSituacao(SituacaoCaixa.ABERTO.getValue());
 		caixaDAO.save(caixa);
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		String sit = SituacaoCartaoComanda.ATIVO.getValue();
-		map.put("situacao", sit);
-		List<CartaoComanda> cartaoComandas = cartaoComandaDAO.executeNamedQuery("Caixa.CartoesDisponiveis", map);
-		if (cartaoComandas != null && !cartaoComandas.isEmpty()){
-			for (CartaoComanda cartaoComanda : cartaoComandas) {
-				Comanda comanda = new Comanda();
-				comanda.setCaixa(caixa);
-				comanda.setCartaoComanda(cartaoComanda);
-				comanda.setSituacao(SituacaoComanda.DISPONIVEL.getValue());
-				comandaDAO.save(comanda);
-			}
-		}
 		
 		FilaBar filaBar = new FilaBar();
 		filaBar.setSituacao(SituacaoFilas.ABERTO.getValue());
@@ -126,7 +111,7 @@ public class CaixaFacadeImp implements CaixaFacade {
 		filaCozinha.setSituacao(SituacaoFilas.ABERTO.getValue());
 		filaCozinha.setCaixa(caixa);
 		filaCozinhaDAO.save(filaCozinha);
-		caixa.setComandas(this.findComandasByCaixa(caixa, SituacaoComanda.DISPONIVEL));
+		caixa.setComandas(this.findComandasByCaixa(caixa, SituacaoComanda.ABERTA));
 		
 		return caixa;
 	}

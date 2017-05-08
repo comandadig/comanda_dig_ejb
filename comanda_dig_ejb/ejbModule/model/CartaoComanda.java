@@ -12,10 +12,12 @@ import java.util.List;
 
 @Entity
 @Table(name="cartao_comanda")
-@NamedQuery(name="CartaoComanda.findAll", query="SELECT c FROM CartaoComanda c")
+@NamedQuery(name="CartaoComanda.CARTAO_ATIVO", query="SELECT c FROM CartaoComanda c where c.codComanda = :codComanda and c.situacao = 'ATIVO'")
 public class CartaoComanda implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	public static final String CARTAO_ATIVO = "CartaoComanda.CARTAO_ATIVO";
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_cartao_comanda")

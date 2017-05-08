@@ -2,19 +2,23 @@ package ejb.imp;
 
 
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import dao.CartaoComandaDAO;
 import dao.ComandaDAO;
 import dao.PedidosComandaDAO;
 import ejb.CaixaFacade;
 import ejb.ComandaFacade;
 import exception.ComandaException;
 import model.Caixa;
+import model.CartaoComanda;
 import model.Comanda;
+import model.Pedido;
 import model.PedidosComanda;
 import util.SituacaoComanda;
 
@@ -38,6 +42,9 @@ public class ComandaFacadeImp implements ComandaFacade {
 	private CaixaFacade caixaFacade;
 	@EJB
 	private PedidosComandaDAO pedidosComandaDAO;
+	@EJB
+	private CartaoComandaDAO cartaoComandaDao;
+	
 	
 	@Override
 	public void save(Comanda entity) {
@@ -68,51 +75,57 @@ public class ComandaFacadeImp implements ComandaFacade {
 
 	@Override
 	public Comanda buscarComanda(String codComanda) {
-		return comandaDAO.buscarComanda(codComanda);
+		return comandaDAO.buscarComandaAberta(codComanda);
 	}
 
 	@Override
-	public Comanda abrirComanda(Comanda comanda) {
-		Comanda comandaPersist = comandaDAO.find(comanda.getIdComanda());
-		comandaPersist.setDocumento(comanda.getDocumento());
-		comandaPersist.setNome(comanda.getNome());
-		comandaPersist.setSexo(comanda.getSexo());
-		comandaPersist.setTelefone(comanda.getTelefone());
-		comandaPersist.setSituacao(SituacaoComanda.ABERTO.getValue());
-		return comandaDAO.update(comandaPersist);
+	public void abrirComanda(Comanda comanda) throws ComandaException {
+		
+		CartaoComanda cartaoComanda = this.vericaAberturaComanda(comanda.getCartaoComanda().getCodComanda());
+		Caixa caixa = caixaFacade.buscarCaixaDisponivel();
+		
+		comanda.setCaixa(caixa);
+		comanda.setCartaoComanda(cartaoComanda);
+		comanda.setDataAbertura(new Date());
+		comanda.setSituacao(SituacaoComanda.ABERTA.getValue());
+		comandaDAO.save(comanda);
 	}
 
 	
 	@Override
-	public Comanda vericaAberturaComanda(String codigoComanda) throws ComandaException{
+	public CartaoComanda vericaAberturaComanda(String codigoComanda) throws ComandaException{
 		
 		Caixa caixa = caixaFacade.buscarCaixaDisponivel();
 		if (caixa == null) throw new ComandaException(CAIXA_NAO_ESTA_ABERTO);
 		
-		Comanda comanda = comandaDAO.buscarComanda(codigoComanda);
-		if (comanda != null){
-			if (comanda.getSituacao().equals(SituacaoComanda.DISPONIVEL.getValue())){
-				comanda.setCaixa(caixa);
-				return comanda;
-			} else {
-				throw new ComandaException(COMANDA_NAO_ESTA_DISPONIVEL);
-			}
-			
-		} else {
-			 throw new ComandaException(COMANDA_NAO_CADASTRADA);
-		}
+		CartaoComanda cartaoComanda = cartaoComandaDao.buscarCartaoAtivo(codigoComanda);
+		if (cartaoComanda == null) throw new ComandaException(COMANDA_NAO_CADASTRADA);
+		
+		Comanda comanda = comandaDAO.buscarComandaAberta(codigoComanda);
+		if (comanda != null)  throw new ComandaException(COMANDA_NAO_ESTA_DISPONIVEL);
+		
+		return cartaoComanda;
+		
+		
 	}
 	
 	
 	@Override
 	public Comanda vericaComandaPedido(String codigoComanda) throws ComandaException{
 		
+		return verificaComanda(codigoComanda);
+	}
+
+	private Comanda verificaComanda(String codigoComanda) throws ComandaException {
 		Caixa caixa = caixaFacade.buscarCaixaDisponivel();
 		if (caixa == null) throw new ComandaException(CAIXA_NAO_ESTA_ABERTO);
 		
-		Comanda comanda = comandaDAO.buscarComanda(codigoComanda);
+		CartaoComanda cartaoComanda = cartaoComandaDao.buscarCartaoAtivo(codigoComanda);
+		if (cartaoComanda == null) throw new ComandaException(COMANDA_NAO_CADASTRADA);
+		
+		Comanda comanda = comandaDAO.buscarComandaAberta(codigoComanda);
 		if (comanda != null){
-			if (comanda.getSituacao().equals(SituacaoComanda.ABERTO.getValue())){
+			if (comanda.getSituacao().equals(SituacaoComanda.ABERTA.getValue())){
 				comanda.setCaixa(caixa);
 				return comanda;
 			} else {
@@ -120,7 +133,7 @@ public class ComandaFacadeImp implements ComandaFacade {
 			}
 			
 		} else {
-			 throw new ComandaException(COMANDA_NAO_CADASTRADA);
+			 throw new ComandaException(COMANDA_NAO_ESTA_DISPONIVEL);
 		}
 	}
 	
@@ -134,5 +147,39 @@ public class ComandaFacadeImp implements ComandaFacade {
 		if (list != null && !list.isEmpty()) 	return list.get(0);
 		
 		return null;
+	}
+
+	@Override
+	public void fecharComanda(Comanda comanda, int percentual) throws ComandaException {
+		
+		verificaComanda(comanda.getCartaoComanda().getCodComanda());
+		double resultTotal =  this.totalPedidos(comanda);
+		resultTotal = resultTotal + ((resultTotal * percentual) / 100);
+		
+		comanda.setDataFechamento(new Date());
+		comanda.setValorTotal(resultTotal);
+		comanda.setSituacao(SituacaoComanda.FECHADO.getValue());
+		
+		comandaDAO.update(comanda);
+		
+	}
+
+	private double totalPedidos(Comanda comanda) {
+		
+		double resultTotal = 0;
+		
+		
+		PedidosComanda pedidosComanda = this.pedidosComanda(comanda);
+		
+		if (comanda.getPedidosComandas() != null && pedidosComanda != null){
+			
+			if (pedidosComanda !=null && pedidosComanda.getPedidos() != null){
+				for (Pedido pedido : pedidosComanda.getPedidos()) {
+						resultTotal = resultTotal + pedido.getValor();
+				}
+			}
+		}
+		
+		return resultTotal;
 	}
 }

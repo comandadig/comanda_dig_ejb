@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import exception.ComandaException;
+import model.CartaoComanda;
 import model.Comanda;
 import model.PedidosComanda;
 
@@ -23,15 +24,17 @@ public interface ComandaFacade {
 	
 	public abstract List<Comanda> findAll();
 	
-	public abstract Comanda vericaAberturaComanda(String codigoComanda) throws ComandaException;
+	public abstract CartaoComanda vericaAberturaComanda(String codigoComanda) throws ComandaException;
 	
 	public abstract Comanda vericaComandaPedido (String codigoComanda) throws ComandaException;
 	
 	public abstract Comanda buscarComanda(String codComanda);
 	
-	public abstract Comanda abrirComanda(Comanda comanda);
+	public abstract void abrirComanda(Comanda comanda) throws ComandaException;
 	
-	public PedidosComanda pedidosComanda(Comanda comanda);
+	public abstract PedidosComanda pedidosComanda(Comanda comanda);
+
+	public abstract void fecharComanda(Comanda comanda, int percentual) throws ComandaException;
 	
 
 }

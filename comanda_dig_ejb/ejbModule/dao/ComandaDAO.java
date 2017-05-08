@@ -18,10 +18,10 @@ public class ComandaDAO extends GenericDAO<Comanda> {
 	}
 	
 	
-	public Comanda buscarComanda(String codComanda) {
+	public Comanda buscarComandaAberta(String codComanda) {
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("codComanda", codComanda);
-		List<Comanda> list = this.executeNamedQuery("Comanda.ConsultaComanda", parameters);
+		List<Comanda> list = this.executeNamedQuery(Comanda.COMANDA_ABERTA, parameters);
 		if (list!= null && !list.isEmpty()) return list.get(0);
 		return null;
 	}

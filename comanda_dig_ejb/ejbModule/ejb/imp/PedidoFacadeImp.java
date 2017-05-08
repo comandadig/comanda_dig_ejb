@@ -78,7 +78,7 @@ public class PedidoFacadeImp implements PedidoFacade {
 
 	@Override
 	public Comanda buscarComanda(String codComanda) {
-		return comandaDAO.buscarComanda(codComanda);
+		return comandaDAO.buscarComandaAberta(codComanda);
 	}
 
 

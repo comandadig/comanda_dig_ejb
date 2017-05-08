@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -15,9 +16,11 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@NamedQuery(name="Comanda.findAll", query="SELECT c FROM Comanda c")
+@NamedQuery(name="Comanda.COMANDA_ABERTA", query="FROM Comanda c where c.cartaoComanda.codComanda = :codComanda and c.situacao = 'ABERTA'")
 public class Comanda implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	public static final String COMANDA_ABERTA = "Comanda.COMANDA_ABERTA";
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -38,12 +41,18 @@ public class Comanda implements Serializable {
 	@OneToMany(mappedBy="comanda")
 	private List<PedidosComanda> pedidosComandas;
 
+	private Date dataAbertura;
+	private Date dataFechamento;
 	
 	private String nome;
 	private String telefone;
 	private String documento;
 	private Boolean sexo;
 	private Integer mesa;
+	
+	
+	private Double valorTotal;
+	private String formaPagamento;
 	
 	public Comanda() {
 	}
@@ -126,6 +135,38 @@ public class Comanda implements Serializable {
 
 	public void setMesa(Integer mesa) {
 		this.mesa = mesa;
+	}
+
+	public Date getDataAbertura() {
+		return dataAbertura;
+	}
+
+	public void setDataAbertura(Date dataAbertura) {
+		this.dataAbertura = dataAbertura;
+	}
+
+	public Date getDataFechamento() {
+		return dataFechamento;
+	}
+
+	public void setDataFechamento(Date dataFechamento) {
+		this.dataFechamento = dataFechamento;
+	}
+
+	public Double getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(Double valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+
+	public String getFormaPagamento() {
+		return formaPagamento;
+	}
+
+	public void setFormaPagamento(String formaPagamento) {
+		this.formaPagamento = formaPagamento;
 	}
 
 	

@@ -2,7 +2,7 @@ package util;
 
 public enum SituacaoComanda {
 
-	DISPONIVEL("DISPONIVEL"),ABERTO("ABERTO"),FECHADO("FECHADO"),TODAS("%");
+	ABERTA("ABERTA"),FECHADO("FECHADO"),TODAS("%");
 	
 	private String value;
 	
